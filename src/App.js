@@ -4,9 +4,11 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 //Components
 import Header from './components/Header/header';
 import Home from './components/Home';
+import Login from './components/Login';
 import Movie from './components/Movie';
 import NotFound from './components/NotFound';
-
+//Context
+import UserProvider from './context';
 
 //styles
 import { GlobalStyle } from './GlobalStyle';
@@ -14,19 +16,23 @@ import { GlobalStyle } from './GlobalStyle';
 
 const App = () =>(
   <Router>
-    <Header />
+    <UserProvider>
+      <Header />
 
-    <Switch>
-      <Route exact path ='/' children={<Home />}>
-      </Route>
+      <Switch>
+        <Route exact path ='/' children={<Home />}>
+        </Route>
 
-      <Route path='/movie/:movieId' children={<Movie />}>
-      </Route>
+        <Route path='/login' children={<Login />} />
 
-      <Route path='/*' children={<NotFound />} />
-    </Switch>
+        <Route path='/movie/:movieId' children={<Movie />}>
+        </Route>
 
-    <GlobalStyle />
+        <Route path='/*' children={<NotFound />} />
+      </Switch>
+
+      <GlobalStyle />
+    </UserProvider>
   </Router>
 );
 export default App;
