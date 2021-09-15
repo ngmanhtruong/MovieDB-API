@@ -10,4 +10,12 @@ const UserProvider = ({ children }) => {
     )
 }
 
+export const ThemeProvider = ({ children }) => {
+    const [theme, setTheme] = useState('dark');
+
+    return (
+        <Context.Provider value={[theme, setTheme]}>{children}</Context.Provider>
+    )
+}
+
 export default UserProvider;

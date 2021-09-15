@@ -49,14 +49,14 @@ export const useHomeFetch = () => {
         }
         console.log("GRABBING FROM API");
         fetchMovies(1, searchTerm);
-    }, [searchTerm])
+    }, [searchTerm]);
 
     //Load more
     useEffect(() => {
         if (!isLoadingMore) return;
         fetchMovies(state.page + 1, searchTerm);
         setIsLoadingMore(false);
-    },[isLoadingMore, searchTerm, state.page])
+    },[isLoadingMore, searchTerm, state.page]);
 
     //Write to sessionStorage
     useEffect(()=>{

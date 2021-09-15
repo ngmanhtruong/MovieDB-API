@@ -13,7 +13,7 @@ const Login = () =>{
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(false);
-    const history = useHistory()
+    const history = useHistory();
 
     const [_user, setUser] = useContext(Context);
 
@@ -26,6 +26,8 @@ const Login = () =>{
                 username,
                 password
             );
+            console.log(sessionId);
+            window.localStorage.setItem('user',JSON.stringify(sessionId));
             setUser({ sessionId: sessionId.session_id, username });
             
             history.push('/');
@@ -41,8 +43,6 @@ const Login = () =>{
 
         if (name ==='username') setUsername(value);
         if (name ==='password') setPassword(value);
-
-
     };
 
 
