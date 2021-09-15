@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 //styles
 import { Image, Wrapper } from './Thumb.styles';
 
-const Thumb = ({ image, movieId, clickable, title, titleDisplay})=>(
+const Thumb = ({ image, movieId, clickable, title, titleDisplay, voteAverage})=>(
     <Wrapper>
         {titleDisplay ? (
         <>
@@ -17,6 +17,12 @@ const Thumb = ({ image, movieId, clickable, title, titleDisplay})=>(
                 ) : (
                     <Image src={image} alt='movie-thumb' />
                 )}
+                <div className={`vote-average`}>
+                    {voteAverage > 7  
+                    ?<span className="green">{voteAverage}</span>
+                    :<span className="yellow">{voteAverage}</span>
+                    }
+                </div>
             </div>
             <div className="title">
                 <p title={title}>{title}</p>

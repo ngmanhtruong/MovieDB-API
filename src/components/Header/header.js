@@ -15,36 +15,40 @@ const Header = ()=> {
     //console.log(userStorage);
 
     return (
-    <Wrapper>
-        <Content>
-            <Link to='/'>
-                <LogoImg src={FILogo} alt='filmsinfo-logo' />
-            </Link>
-            <div>
-                <Link to='/movies'>
-                    Movies
+        <Wrapper>
+            <Content>
+                <div className="logo">
+                    <Link to='/'>
+                        <LogoImg src={FILogo} alt='filmsinfo-logo' />
+                    </Link>
+                </div>
+                <div className="movies-page">
+                    <Link to='/movies'>
+                        Movies
+                    </Link>
+                </div>
+                <div className="tv-page">
+                    <Link to='/tvshows'>
+                        TV & Shows
+                    </Link>
+                </div>
+                <div className="people-page">
+                    <Link to='/people'>
+                        People
+                    </Link>
+                </div>
+                {user? (
+                    <span className='loggedIn'> Logged in as: {user.username} </span>
+                ):(
+                <Link to='/login'>
+                    <span className='login'>Log in</span>
                 </Link>
-            </div>
-            <div>
-                <Link to='/tvshows'>
-                    TV & Shows
-                </Link>
-            </div>
-            <div>
-                <Link to='/people'>
-                    People
-                </Link>
-            </div>
-            {user? (
-                <span className='loggedIn'> Logged in as: {user.username} </span>
-            ):(
-            <Link to='/login'>
-                <span className='login'>Log in</span>
-            </Link>
-            )}
-            <TMDBLogoImg src={TMDBLogo} alt='tmdb-logo' />
-        </Content>
-    </Wrapper>
+                )}
+                <div className="powered-by-moviedb">
+                    <TMDBLogoImg src={TMDBLogo} alt='tmdb-logo' />
+                </div>
+            </Content>
+        </Wrapper>
     );
 };
 

@@ -5,7 +5,7 @@ import { POSTER_SIZE, BACKDROP_SIZE, IMAGE_BASE_URL } from '../config';
 import HeroImage from "./HeroImage/HeroImage";
 
 //Hook
-import { useHomeFetch } from '../hooks/useHomeFetch';
+import { useUpcomingFetch } from "../hooks/useUpcomingFetch";
 //Image
 import NoImage from '../images/no_image.jpg';
 import Grid from "./Grid/Grid";
@@ -16,8 +16,8 @@ import Button from "./Button/Button";
 import { Link } from "react-router-dom";
 import Title from "./Title/Title";
 
-const Home = () => {
-    const {state, loading, error, setSearchTerm, searchTerm, setIsLoadingMore} = useHomeFetch();
+const Upcoming = () => {
+    const {state, loading, error, setSearchTerm, searchTerm, setIsLoadingMore} = useUpcomingFetch();
     
     if(error) return <div>Did Something went wrong ...</div>;
     console.log(state);
@@ -25,19 +25,19 @@ const Home = () => {
         <>
             {!searchTerm && state.results[0] ?
             <HeroImage
-                image={`${IMAGE_BASE_URL}original${state.results[0].backdrop_path}`}
+                image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.results[0].backdrop_path}`}
                 title={state.results[0].original_title}
                 text={state.results[0].overview}
             />
             : null}
             <SearchBar setSearchTerm={setSearchTerm}/>
             {!searchTerm &&<Title>
-                <Link to='/'>
-                    Popular Movies
-                </Link>
-                <span>|</span>
                 <Link to='/upcoming'>
                     Upcoming Movies
+                </Link>
+                <span>|</span>
+                <Link to='/'>
+                    Popular Movies
                 </Link>
             </Title>
             }
@@ -65,4 +65,4 @@ const Home = () => {
     )
 }
 
-export default Home;
+export default Upcoming;

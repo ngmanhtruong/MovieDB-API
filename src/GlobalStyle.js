@@ -7,6 +7,8 @@ export const GlobalStyle =  createGlobalStyle`
         --lightGrey: #eee;
         --medGrey: #353535;
         --darkGrey: #1c1c1c;
+        --lightGreen: #21d07a;
+        --lightYellow: #d2d531;
         --fontSuperBig: 2.5rem;
         --fontBig: 1.5rem;
         --fontMed: 1.2rem;
@@ -21,7 +23,7 @@ export const GlobalStyle =  createGlobalStyle`
     body {
         margin: 0;
         padding: 0;
-
+        background-color: var(--darkGrey);
         h1{
             font-size: 2rem;
             font-weight: 600;

@@ -5,7 +5,8 @@ import {
   API_KEY,
   REQUEST_TOKEN_URL,
   LOGIN_URL,
-  SESSION_ID_URL
+  SESSION_ID_URL,
+  UPCOMING_BASE_URL
 } from './config';
 
 const defaultConfig = {
@@ -20,6 +21,12 @@ const apiSettings = {
     const endpoint = searchTerm
       ? `${SEARCH_BASE_URL}${searchTerm}&page=${page}`
       : `${POPULAR_BASE_URL}&page=${page}`;
+    return await (await fetch(endpoint)).json();
+  },
+  fetchUpcoming: async (searchTerm, page) => {
+    const endpoint = searchTerm
+      ? `${SEARCH_BASE_URL}${searchTerm}&page=${page}`
+      : `${UPCOMING_BASE_URL}&page=${page}`;
     return await (await fetch(endpoint)).json();
   },
   fetchMovie: async movieId => {
