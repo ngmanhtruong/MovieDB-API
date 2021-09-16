@@ -3,7 +3,7 @@ import { IMAGE_BASE_URL, BACKDROP_SIZE } from '../../config';
 
 export const Wrapper = styled.div`
     background: ${({ backdrop }) =>
-        backdrop ? `url('${IMAGE_BASE_URL}${BACKDROP_SIZE}${backdrop}')`
+        backdrop ? `url('${IMAGE_BASE_URL}original${backdrop}')`
         : '#000'};
     background-size: cover;
     background-position: center;

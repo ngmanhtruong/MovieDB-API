@@ -9,10 +9,28 @@ export const GlobalStyle =  createGlobalStyle`
         --darkGrey: #1c1c1c;
         --lightGreen: #21d07a;
         --lightYellow: #d2d531;
+        --purple: #5500ff;
         --fontSuperBig: 2.5rem;
         --fontBig: 1.5rem;
         --fontMed: 1.2rem;
         --fontSmall: 1rem;
+    }
+    ::-webkit-scrollbar{
+        width: 10px;
+    }
+
+    ::-webkit-scrollbar-track{
+        background-color: #1c1c1c;
+    }
+
+    ::-webkit-scrollbar-thumb{
+        border-radius: 20px;
+        border: solid #1c1c1c;
+        background-color: #aaa;
+    }
+
+    ::-webkit-scrollbar-thumb:hover{
+        background-color: #717171;
     }
 
     * {
@@ -23,6 +41,7 @@ export const GlobalStyle =  createGlobalStyle`
     body {
         margin: 0;
         padding: 0;
+        padding-top: 70px;
         background-color: var(--darkGrey);
         h1{
             font-size: 2rem;
@@ -39,7 +58,9 @@ export const GlobalStyle =  createGlobalStyle`
             font-size: 1rem;
             color: var(--white);
         }
-
+        @media screen and (max-width: 550px){
+            padding-top: 64px;
+        }
     }
 
 

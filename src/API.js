@@ -33,6 +33,27 @@ const apiSettings = {
     const endpoint = `${API_URL}movie/${movieId}?api_key=${API_KEY}`;
     return await (await fetch(endpoint)).json();
   },
+  fetchNowPlaying: async (page) => {
+    const endpoint = `${API_URL}movie/now_playing?api_key=${API_KEY}&language=en-US&page=${page}`;
+    return await (await fetch(endpoint)).json();
+  },
+  fetchTopRated: async (page) => {
+    const endpoint = `${API_URL}movie/top_rated?api_key=${API_KEY}&language=en-US&page=${page}`;
+    return await (await fetch(endpoint)).json();
+  },
+  fetchTrending: async (time, type) => {
+    const endpoint = `${API_URL}trending/${type}/${time}?api_key=${API_KEY}&language=en-US`;
+    return await (await fetch(endpoint)).json();
+  },
+  fetchLatest: async () => {
+    const endpoint = `${API_URL}movie/latest?api_key=${API_KEY}&language=en-US`;
+    return await (await fetch(endpoint)).json();
+  },
+  fetchGenres: async (type) => {
+    const endpoint = `${API_URL}genre/${type}/list?api_key=${API_KEY}&language=en-US`;
+    console.log(endpoint);
+    return await (await fetch(endpoint)).json();
+  },
   fetchCredits: async movieId => {
     const creditsEndpoint = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`;
     return await (await fetch(creditsEndpoint)).json();

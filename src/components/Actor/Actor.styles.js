@@ -19,8 +19,8 @@ export const Wrapper = styled.div`
 
 export const Image = styled.img`
     display: block;
-    width: 100%;
-    height: 200px;
+    width: 200px;
+    height: 240px;
     object-fit: cover;
     border-radius: 15px;
 `;

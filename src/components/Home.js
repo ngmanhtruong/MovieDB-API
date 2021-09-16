@@ -3,11 +3,6 @@ import React from "react";
 import { POSTER_SIZE, BACKDROP_SIZE, IMAGE_BASE_URL } from '../config';
 //Components
 import HeroImage from "./HeroImage/HeroImage";
-
-//Hook
-import { useHomeFetch } from '../hooks/useHomeFetch';
-//Image
-import NoImage from '../images/no_image.jpg';
 import Grid from "./Grid/Grid";
 import Thumb from "./Thumb/Thumb";
 import Spinner from './Spinner/Spinner';
@@ -15,6 +10,11 @@ import SearchBar from "./SearchBar/SearchBar";
 import Button from "./Button/Button";
 import { Link } from "react-router-dom";
 import Title from "./Title/Title";
+//Hook
+import { useHomeFetch } from '../hooks/useHomeFetch';
+//Image
+import NoImage from '../images/no_image.jpg';
+
 
 const Home = () => {
     const {state, loading, error, setSearchTerm, searchTerm, setIsLoadingMore} = useHomeFetch();
@@ -32,7 +32,7 @@ const Home = () => {
             : null}
             <SearchBar setSearchTerm={setSearchTerm}/>
             {!searchTerm &&<Title>
-                <Link to='/'>
+                <Link to='/' className="active">
                     Popular Movies
                 </Link>
                 <span>|</span>

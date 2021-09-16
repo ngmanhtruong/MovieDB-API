@@ -21,6 +21,7 @@ const Upcoming = () => {
     
     if(error) return <div>Did Something went wrong ...</div>;
     console.log(state);
+    
     return (
         <>
             {!searchTerm && state.results[0] ?
@@ -32,7 +33,7 @@ const Upcoming = () => {
             : null}
             <SearchBar setSearchTerm={setSearchTerm}/>
             {!searchTerm &&<Title>
-                <Link to='/upcoming'>
+                <Link to='/upcoming' className="active">
                     Upcoming Movies
                 </Link>
                 <span>|</span>

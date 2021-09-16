@@ -1,6 +1,7 @@
 import React from 'react';
 //Routing
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Footer from './components/Footer/Footer';
 //Components
 import Header from './components/Header/header';
 import Home from './components/Home';
@@ -34,7 +35,8 @@ const App = () =>(
 
         <Route path='/*' children={<NotFound />} />
       </Switch>
-
+      
+      <Footer />
       <GlobalStyle />
     </UserProvider>
   </Router>

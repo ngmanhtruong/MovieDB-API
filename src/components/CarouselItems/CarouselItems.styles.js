@@ -4,13 +4,14 @@ export const Wrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
+    padding: 0 20px;
+    padding-bottom: 40px;
+    width: 200px;
     a{
         height: 100%;
         width: 100%;
     }
-
     .image-wrapper{
-        height: 90%;
         width: 100%;
         position: relative;
         .vote-average{
@@ -35,27 +36,18 @@ export const Wrapper = styled.div`
             }
         }
     }
-
-    .title{
-        height: 10%;
-        width: 100%;
-        padding-top: 15px;
+    .text{
+        margin-top: 15px;
         p{
-            margin-top: 5px;
-            padding-left: 5px;
-            font-size: var(--fontBig);
-            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            width: 170px;
             white-space: nowrap;
             text-overflow: ellipsis;
-            margin-bottom: 0px;
-            text-align:center;
-            box-shadow: 0 2px 8px black;
-            transition: all ease 0.3s;
-            @media screen and (max-width: 720px){
-                font-size: var(--fontMed);
-            }
-            &:hover{
-                cursor: pointer;
+            overflow: hidden;
+
+            &.release_date{
+                font-style: italic;
             }
         }
     }
@@ -63,8 +55,8 @@ export const Wrapper = styled.div`
 
 export const Image = styled.img`
     width: 100%;
-    height: 100%;
-    max-width: 720px;
+    height: 240px;
+    max-width: 200px;
     transition: all 0.3s;
     object-fit: cover;
     border-radius: 10px;

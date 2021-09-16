@@ -6,7 +6,6 @@ export const Wrapper = styled.div`
     min-height: 100px;
     background: var(--darkGrey);
     padding: 0 20px;
-
 `;
 
 export const Content = styled.div`
@@ -23,12 +22,17 @@ export const Content = styled.div`
         border-radius: 20px;
         margin: 0 20px;
         flex: 1;
-
+        padding: 20px 0;
         :first-child {
             margin-left: 0;
         }
         :last-child{
             margin-right: 0;
+        }
+
+        p{
+            margin: 0;
+            padding: 0;
         }
     }
 

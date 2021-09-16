@@ -15,7 +15,7 @@ const Header = ()=> {
     //console.log(userStorage);
 
     return (
-        <Wrapper>
+        <Wrapper id="navbar">
             <Content>
                 <div className="logo">
                     <Link to='/'>

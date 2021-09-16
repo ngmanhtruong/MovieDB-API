@@ -7,6 +7,7 @@ import { isPersistedState } from "../helpers";
 const initialState = {
     page: 0,
     results : [],
+    dates : {},
     total_pages: 0,
     total_results: 0
 };

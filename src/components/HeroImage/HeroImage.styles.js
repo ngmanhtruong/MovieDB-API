@@ -25,7 +25,16 @@ export const Content = styled.div`
     padding: 20px;
     max-width: var(--maxWidth);
     margin: 0 auto;
-
+    h2{
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        font-size: var(--fontSuperBig);
+        font-weight: 600;
+        z-index: 2;
+        color: var(--white);
+        text-shadow: 5px 5px 8px #5500ff;
+    }
 `;
 
 export const Text = styled.div`

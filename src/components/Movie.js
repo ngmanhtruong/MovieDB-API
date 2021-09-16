@@ -12,6 +12,8 @@ import { useMovieFetch } from '../hooks/useMovieFetch';
 //Image
 import NoImage from '../images/no_image.jpg';
 import Actor from './Actor/Actor';
+import Carousel from './Carousel/Carousel';
+
 
 const Movie = () => {
     const { movieId } = useParams();
@@ -30,7 +32,7 @@ const Movie = () => {
                 budget={movie.budget}
                 revenue={movie.revenue}
             />
-            <Grid header='Actors'>
+            <Carousel header='Actors'>
                 {movie.actors.map(actor=>(
                     <Actor
                         key={actor.credit_id}
@@ -43,7 +45,7 @@ const Movie = () => {
                         }
                     />
                 ))}
-            </Grid>
+            </Carousel>
         </>
     )
 }
