@@ -6,7 +6,7 @@ import { POSTER_SIZE, BACKDROP_SIZE, IMAGE_BASE_URL } from '../config';
 import HeroImage from "./HeroImage/HeroImage";
 
 //Hook
-import { useHomeFetch } from '../hooks/useHomeFetch';
+import { usePopularTvFetch } from "../hooks/usePopularTvFetch";
 
 //Components
 import TopRating from "./TopRating/TopRating";
@@ -14,8 +14,9 @@ import PopularTV from "./PopularTV/PopularTV";
 import AiringToday from "./AiringToday/AiringToday";
 
 
+
 const TVShows = () => {
-    const {state, loading, error} = useHomeFetch();
+    const {state, loading, error} = usePopularTvFetch();
     if(error) return <div>Something went wrong...</div>;
 
     const random = Math.floor(Math.random() * state.results.length);

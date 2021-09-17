@@ -7,10 +7,10 @@ import Carousel from "../Carousel/Carousel";
 import CarouselItems from "../CarouselItems/CarouselItems";
 import NoImage from '../../images/no_image.jpg';
 import { Spinner } from "../Spinner/Spinner.styles";
-import { useAiringTodayFetch } from "../../hooks/useAiringFetch";
+import { usePopularTvFetch } from "../../hooks/usePopularTvFetch";
 
 const PopularTV = () => {
-  const {state,loading,error} = useAiringTodayFetch();
+  const {state,loading,error} = usePopularTvFetch();
   if(error) return <div>Something went wrong...</div>;
     
   //console.log(state);
