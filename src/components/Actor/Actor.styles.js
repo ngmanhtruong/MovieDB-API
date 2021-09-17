@@ -9,12 +9,19 @@ export const Wrapper = styled.div`
 
     h3{
         margin: 10px 0 0 0;
+        width: 200px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
     
     p{
         margin: 5px 0;
+        width: 200px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
-
 `;
 
 export const Image = styled.img`

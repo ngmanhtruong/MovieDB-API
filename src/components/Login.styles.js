@@ -30,3 +30,8 @@ export const Wrapper = styled.div`
         text-align: center;
     }
 `;
+
+export const Title = styled.h1`
+    padding-top: 20px;
+    text-align: center;
+`;

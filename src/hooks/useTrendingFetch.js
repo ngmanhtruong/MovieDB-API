@@ -11,12 +11,14 @@ const initialState = {
     total_results: 0
 };
 
-export const useTrendingFetch = ({ time, type }) => {
+export const useTrendingFetch = () => {
     const [state, setState] = useState(initialState);
     const [loading,setLoading] = useState(false);
     const [error, setError] = useState(false);
+    const [time, setTime] = useState('day');
+    const [type, setType] = useState('movie');
 
-    const fetchTrending = async (time="day", type="movie")=>{
+    const fetchTrending = async (time, type)=>{
         try{
             setError(false);
             setLoading(true);
@@ -44,12 +46,12 @@ export const useTrendingFetch = ({ time, type }) => {
         }
         console.log("GRABBING FROM TRENDING");
         fetchTrending(time, type);
-    }, []);
+    }, [time,type]);
 
     //Write to sessionStorage
     useEffect(()=>{
         sessionStorage.setItem(`trending${type}State`,JSON.stringify(state));
-    },[state]);
+    },[state,type]);
 
-    return { state, loading, error };
+    return { state, loading, error, setTime, setType };
 };

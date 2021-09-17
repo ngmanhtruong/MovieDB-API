@@ -26,6 +26,7 @@ export const Content = styled.div`
         text-decoration: none;
         font-weight: 600;
     }
+
 `;
 
 export const LogoImg = styled.img`
@@ -39,14 +40,21 @@ export const LogoImg = styled.img`
     }
 `;
 
-export const TMDBLogoImg = styled.img`
-    width: 100px;
-
-    @media screen and (max-width: 768px){
-        width: 80px
+export const Form = styled.form`
+    padding-top: 10px;
+    position: relative;
+    max-width: var(--maxWidth);
+    margin: 0 auto;
+    input{
+        width: 100%;
+        height: 40px;
     }
-    @media screen and (max-width: 550px){
-        width: 50px;
+    button{
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+        border-style: none;  
+        background-color: transparent;
+        width: 30px;
     }
-
-`;
+`;  

@@ -1,24 +1,24 @@
 import React, { useState } from "react";
 //styles
-import { Wrapper, Content } from './NowPlaying.styles';
+import { Wrapper } from './AiringToday.styles';
 import { IMAGE_BASE_URL, POSTER_SIZE } from "../../config";
 //Components
 import Carousel from "../Carousel/Carousel";
 import CarouselItems from "../CarouselItems/CarouselItems";
 import NoImage from '../../images/no_image.jpg';
 import { Spinner } from "../Spinner/Spinner.styles";
-import { useNowPlayingFetch } from "../../hooks/useNowPlayingFetch";
+import { useAiringTodayFetch } from "../../hooks/useAiringFetch";
 
-const NowPlaying = () => {
-  const {state,loading,error} = useNowPlayingFetch();
+const AiringToday = () => {
+  const {state,loading,error} = useAiringTodayFetch();
   if(error) return <div>Something went wrong...</div>;
     
-  //console.log(state);
+  console.log(state);
 
   return (
     <Wrapper>
         {loading && <Spinner />}
-        <Carousel header="Now Playing">
+        <Carousel header="TV Airing Today">
             {state.results.map(movie=>(
                 <CarouselItems 
                 key={movie.id}
@@ -28,9 +28,9 @@ const NowPlaying = () => {
                     : NoImage
                 }
                 movieId={movie.id}
-                title={movie.title}
+                title={movie.name}
                 vote_average={movie.vote_average}
-                release_date={movie.release_date}
+                first_air_date={movie.first_air_date}
                 />
             ))}
         </Carousel>
@@ -38,4 +38,4 @@ const NowPlaying = () => {
   )
 }
 
-export default NowPlaying;
+export default AiringToday;

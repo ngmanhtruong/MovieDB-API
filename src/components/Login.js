@@ -5,7 +5,7 @@ import API from '../API';
 //Components
 import Button from "./Button/Button";
 //Styles
-import { Wrapper } from './Login.styles';
+import { Wrapper, Title } from './Login.styles';
 //Context
 import { Context } from "../context";
 
@@ -34,7 +34,6 @@ const Login = () =>{
         } catch(error){
             setError(true);
         }
-
     };
 
     const handleInput = e =>{
@@ -47,6 +46,8 @@ const Login = () =>{
 
 
     return (
+        <>
+        <Title>Login with TMDB account</Title>
         <Wrapper>
             <label>Username:</label>
             <input
@@ -66,6 +67,7 @@ const Login = () =>{
 
             <Button text='Login' callback={handleSubmit} />
         </Wrapper>
+        </>
     )
 }
 

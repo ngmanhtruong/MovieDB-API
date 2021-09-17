@@ -30,7 +30,7 @@ const Home = () => {
                 text={state.results[0].overview}
             />
             : null}
-            <SearchBar setSearchTerm={setSearchTerm}/>
+            <SearchBar setSearchTerm={setSearchTerm} text="Search Movies"/>
             {!searchTerm &&<Title>
                 <Link to='/' className="active">
                     Popular Movies

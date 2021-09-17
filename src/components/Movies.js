@@ -10,13 +10,7 @@ import HeroImage from "./HeroImage/HeroImage";
 import { useHomeFetch } from '../hooks/useHomeFetch';
 //Image
 import NoImage from '../images/no_image.jpg';
-import Grid from "./Grid/Grid";
-import Thumb from "./Thumb/Thumb";
-import Spinner from './Spinner/Spinner';
-import SearchBar from "./SearchBar/SearchBar";
-import Button from "./Button/Button";
-import { Link } from "react-router-dom";
-import Title from "./Title/Title";
+//Components
 import Trending from "./Trending/Trending";
 import NowPlaying from "./NowPlaying/NowPlaying";
 import TopRating from "./TopRating/TopRating";
@@ -25,14 +19,16 @@ import Genres from "./Genres/Genres";
 
 const Movies = () => {
     const {state, loading, error} = useHomeFetch();
+    const [selectedGenres,setSelectedGenres] = useState([]);
+    const [genres, setGenres] = useState([]);
     if(error) return <div>Something went wrong...</div>;
 
     const random = Math.floor(Math.random() * state.results.length);
     const randomHeroImage = state.results[random];
-    console.log(state);
+
     return (
         <>  
-            {randomHeroImage && 
+            {!loading && randomHeroImage && 
             <HeroImage 
                 image={`${IMAGE_BASE_URL}original${randomHeroImage.backdrop_path}`}
                 bigtext='Millions of movies are waiting for you, explore now.'
@@ -43,9 +39,13 @@ const Movies = () => {
                 type="movie"
             />
             <NowPlaying />
-            <TopRating />
+            <TopRating type="movie"/>
             <Genres 
                 type="movie"
+                selectedGenres={selectedGenres} 
+                genres={genres} 
+                setSelectedGenres={setSelectedGenres}
+                setGenres={setGenres}
             />
         </>
     )

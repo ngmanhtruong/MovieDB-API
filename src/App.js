@@ -9,7 +9,9 @@ import Login from './components/Login';
 import Movie from './components/Movie';
 import Movies from './components/Movies';
 import NotFound from './components/NotFound';
+import TVShows from './components/TVshows';
 import Upcoming from './components/Upcoming';
+import People from './components/People';
 //Context
 import UserProvider from './context';
 
@@ -32,6 +34,8 @@ const App = () =>(
         <Route path='/movie/:movieId' children={<Movie />}>
         </Route>
         <Route path='/movies' children={<Movies />} />
+        <Route path='/tvshows' children={<TVShows />} />
+        <Route path='/people' children={<People />} />
 
         <Route path='/*' children={<NotFound />} />
       </Switch>

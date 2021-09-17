@@ -42,7 +42,7 @@ export const useGenresFetch = ({ type }) => {
         }
         console.log("GRAB FROM API");
         fetchGenres(type);
-    },[]);
+    },[type]);
 
     //Write to sessionStorage
     useEffect(()=>{

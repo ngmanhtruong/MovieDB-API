@@ -59,10 +59,21 @@ export const GlobalStyle =  createGlobalStyle`
             color: var(--white);
         }
         @media screen and (max-width: 550px){
-            padding-top: 64px;
+            padding-top: 70px;
         }
     }
 
+    .isPC{
+        @media screen and (max-width: 768px){
+            display: none;
+        }
+    }
+    .isMobile{
+        display: none !important;
+        @media screen and (max-width: 768px){
+            display: block !important;
+        }
+    }
 
 
 `;

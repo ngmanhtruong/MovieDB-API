@@ -13,18 +13,17 @@ const initialState = {
     total_results: 0
 };
 
-export const useTopRatingFetch = () => {
+export const useAiringTodayFetch = () => {
     const [state, setState] = useState(initialState);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
-    const [type, setType] = useState('movie');
 
-    const fetchTopRating = async (type, page)=>{
+    const fetchAiring = async (page)=>{
         try{
             setError(false);
             setLoading(true);
 
-            const nowPlaying = await API.fetchTopRated(type, page);
+            const nowPlaying = await API.fetchTVAiring(page);
 
             setState(prev=>({
                 ...nowPlaying,
@@ -40,20 +39,22 @@ export const useTopRatingFetch = () => {
 
     //Initial
     useEffect(()=> {
-        const sessionState = isPersistedState(`topRating${type}State`);
-        if (sessionState && sessionState.page > 0){
+        const sessionState = isPersistedState('airingTodayState');
+
+        if (sessionState && sessionState.page > 0) {
             setState(sessionState);
+            console.log("GRAB FROM USE AIRING STORAGE");
             setLoading(false);
             return;
         }
-
-        fetchTopRating(type, 1);
-    },[type]);
+        console.log("GRAB FROM API");
+        fetchAiring(1);
+    },[]);
 
     //Write to sessionStorage
     useEffect(()=>{
-        sessionStorage.setItem(`topRating${type}State`,JSON.stringify(state));
-    },[state,type]);
+        sessionStorage.setItem('airingTodayState',JSON.stringify(state));
+    },[state]);
 
-    return { state, loading, error, setType };
+    return { state, loading, error };
 }

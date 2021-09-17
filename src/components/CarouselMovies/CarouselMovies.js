@@ -1,18 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { Wrapper, Image } from './CarouselItems.styles';
+//styles
+import { Wrapper , Image } from './CarouselMovies.styles';
 
-const CarouselItems = ({ image, title, vote_average, clickable, movieId, release_date, first_air_date }) =>{
 
+const CarouselMovies = ({ image, title, vote_average, clickable, movieId }) =>{
+    vote_average = vote_average.toFixed(1);
     return(
         <Wrapper>
             <div className="image-wrapper">
                 {clickable ?
                 <Link to={`/movie/${movieId}`}>
-                    <Image src={image} alt="carousel-items" />
+                    <Image src={image} alt="carousel-movies" />
                 </Link>
-                :   <Image src={image} alt="carousel-items" />
+                :   <Image src={image} alt="carousel-movies" />
                 }
                 <div className="vote-average">
                     {vote_average > 7  
@@ -23,15 +25,9 @@ const CarouselItems = ({ image, title, vote_average, clickable, movieId, release
             </div>
             <div className="text">
                 <p title={title}>{title}</p>
-                {release_date &&
-                <p className="release_date">Release: {release_date}</p>
-                }
-                {first_air_date &&
-                <p className="release_date">First air: {first_air_date}</p>
-                }
             </div>
         </Wrapper>
     )
 }
 
-export default CarouselItems;
+export default CarouselMovies;

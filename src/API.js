@@ -37,8 +37,8 @@ const apiSettings = {
     const endpoint = `${API_URL}movie/now_playing?api_key=${API_KEY}&language=en-US&page=${page}`;
     return await (await fetch(endpoint)).json();
   },
-  fetchTopRated: async (page) => {
-    const endpoint = `${API_URL}movie/top_rated?api_key=${API_KEY}&language=en-US&page=${page}`;
+  fetchTopRated: async (type, page) => {
+    const endpoint = `${API_URL}${type}/top_rated?api_key=${API_KEY}&language=en-US&page=${page}`;
     return await (await fetch(endpoint)).json();
   },
   fetchTrending: async (time, type) => {
@@ -49,9 +49,34 @@ const apiSettings = {
     const endpoint = `${API_URL}movie/latest?api_key=${API_KEY}&language=en-US`;
     return await (await fetch(endpoint)).json();
   },
+  fetchPopularTV: async (page) => {
+    const endpoint = `${API_URL}tv/popular?api_key=${API_KEY}&language=en-US&page=${page}`;
+    return await (await fetch(endpoint)).json();
+  },
+  fetchTVAiring: async (page) => {
+    const endpoint = `${API_URL}tv/airing_today?api_key=${API_KEY}&language=en-US&page=${page}`;
+    return await (await fetch(endpoint)).json();
+  },
   fetchGenres: async (type) => {
     const endpoint = `${API_URL}genre/${type}/list?api_key=${API_KEY}&language=en-US`;
-    console.log(endpoint);
+    return await (await fetch(endpoint)).json();
+  },
+  fetchMoviesWithGenres: async (page, genreforURL) =>{
+    const endpoint = `${API_URL}discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&page=${page}&with_genres=${genreforURL}`;
+    return await (await fetch(endpoint)).json();
+  },
+  fetchMovieRecommendations : async (movieId, page) => {
+    const endpoint = `${API_URL}movie/${movieId}/recommendations?api_key=${API_KEY}&language=en-US&page=${page}`;
+    return await (await fetch(endpoint)).json();
+  },
+  fetchPeople : async (searchTerm, page) => {
+    const endpoint = searchTerm 
+    ? `${API_URL}search/person?api_key=${API_KEY}&language=en-US&query=${searchTerm}&page=${page}`
+    : `${API_URL}person/popular?api_key=${API_KEY}&language=en-US&page=${page}`;
+    return await (await fetch(endpoint)).json();
+  },
+  fetchPerson : async (personId) => {
+    const endpoint = `${API_URL}person/${personId}?api_key=${API_URL}&language=en-US`;
     return await (await fetch(endpoint)).json();
   },
   fetchCredits: async movieId => {
