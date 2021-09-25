@@ -39,9 +39,7 @@ const HeaderSearchbar = ({ setSearchTerm, children, setSearch }) =>{
     }
     const handleClose = (e) => {
         e.preventDefault();
-        if (click){
-            setSearch(false);
-        }
+        setSearch(false);
     }
     return (
         <Form>
