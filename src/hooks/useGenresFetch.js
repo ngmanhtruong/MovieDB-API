@@ -12,7 +12,7 @@ const initialState = {
 
 export const useGenresFetch = ({ type }) => {
     const [state, setState] = useState(initialState);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
 
     const fetchGenres = async (type="movie")=>{

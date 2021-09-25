@@ -15,7 +15,7 @@ const initialState = {
 
 export const useTopRatingFetch = () => {
     const [state, setState] = useState(initialState);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [type, setType] = useState('movie');
 
@@ -43,6 +43,7 @@ export const useTopRatingFetch = () => {
         const sessionState = isPersistedState(`topRating${type}State`);
         if (sessionState && sessionState.page > 0){
             setState(sessionState);
+            console.log("GRAB FROM toprating" + type + "storage");
             setLoading(false);
             return;
         }

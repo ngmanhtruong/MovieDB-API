@@ -40,13 +40,6 @@ const Movies = () => {
             />
             <NowPlaying />
             <TopRating type="movie"/>
-            <Genres 
-                type="movie"
-                selectedGenres={selectedGenres} 
-                genres={genres} 
-                setSelectedGenres={setSelectedGenres}
-                setGenres={setGenres}
-            />
         </>
     )
 }

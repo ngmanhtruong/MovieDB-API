@@ -16,7 +16,7 @@ import { Spinner } from "../Spinner/Spinner.styles";
 
 const TopRating = ({ type }) => {
     const [thisType,_setThisType] = useState(type);
-    const { state, loading, error, setType } = useTopRatingFetch(type);
+    const { state, loading, error, setType } = useTopRatingFetch();
 
     useEffect(()=>{
         setType(thisType);
@@ -25,7 +25,7 @@ const TopRating = ({ type }) => {
 
     if(error) return <div>Something went wrong...</div>;
     
-    //console.log(state);
+    console.log(state);
     return (
         <>
         <Wrapper>

@@ -42,7 +42,7 @@ export const useHomeFetch = () => {
             const sessionState = isPersistedState('homeState');
 
             if (sessionState) {
-                console.log("GRABBING FROM SESSIONSTORAGE");
+                console.log("GRABBING FROM HOMESTATE");
                 setState(sessionState);
                 return;
             }

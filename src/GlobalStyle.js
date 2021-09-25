@@ -74,6 +74,19 @@ export const GlobalStyle =  createGlobalStyle`
             display: block !important;
         }
     }
-
+    svg{
+        padding-left: 5px;
+    }
+    .css-6hp17o-MuiList-root-MuiMenu-list li{
+        font-size: var(--fontMed);
+        font-weight: 300;
+        color: var(--darkGrey);
+    }
+    .css-6hp17o-MuiList-root-MuiMenu-list li a{
+        text-decoration: none;
+        font-size: var(--fontMed);
+        font-weight: 300;
+        color: var(--darkGrey);
+    }
 
 `;

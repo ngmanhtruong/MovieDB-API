@@ -15,7 +15,7 @@ const initialState = {
 
 export const usePopularTvFetch = () => {
     const [state, setState] = useState(initialState);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
 
     const fetchPopularTV = async (page)=>{

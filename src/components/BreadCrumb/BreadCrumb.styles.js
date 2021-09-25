@@ -18,13 +18,18 @@ export const Content = styled.div`
     padding: 0 20px;
 
     span {
-        font-size: var(--fontMed);
+        font-size: var(--fontBig);
         color: var(--white);
         padding-right: 10px;
 
         @media screen and (max-width: 720px){
             font-size: var(--fontSmall);
         }
+    }
+    a {
+        font-size: var(--fontBig);
+        font-weight: 600;
+        text-decoration: none;
     }
 
 `;

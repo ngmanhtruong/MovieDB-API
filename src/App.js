@@ -12,6 +12,8 @@ import NotFound from './components/NotFound';
 import TVShows from './components/TVshows';
 import Upcoming from './components/Upcoming';
 import People from './components/People';
+import TV from './components/TV';
+import Testing from './components/Testing';
 //Context
 import UserProvider from './context';
 
@@ -27,15 +29,17 @@ const App = () =>(
       <Switch>
         <Route exact path ='/' children={<Home />}>
         </Route>
-        <Route path='/upcoming' children={<Upcoming />} />
-
         <Route path='/login' children={<Login />} />
 
         <Route path='/movie/:movieId' children={<Movie />}>
         </Route>
         <Route path='/movies' children={<Movies />} />
+
         <Route path='/tvshows' children={<TVShows />} />
+        <Route path='/tv/:movieId' children={<TV />} />
+        
         <Route path='/people' children={<People />} />
+        {/* <Route path='/testing' children={<Testing />} /> */}
 
         <Route path='/*' children={<NotFound />} />
       </Switch>

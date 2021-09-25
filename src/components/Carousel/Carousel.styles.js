@@ -8,8 +8,7 @@ export const Wrapper = styled.div`
 
     h1{
         margin: 0;
-        padding-bottom: 40px;
-        padding-left: 20px;
+        padding: 20px 20px;
     }
 `;
 

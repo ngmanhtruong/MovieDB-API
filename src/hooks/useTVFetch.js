@@ -5,29 +5,23 @@ import { isPersistedState } from '../helpers';
 //API
 import API from '../API';
 
-export const useMovieFetch = movieId =>{
+export const useTVFetch = movieId =>{
     const [state, setState] = useState({});
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
 
     useEffect(()=>{
-        const fetchMovie = async () =>{
+        const fetchSingleTV = async () =>{
             try{
                 setLoading(true);
                 setError(false);
 
-                const movie = await API.fetchMovie(movieId);
-                const credits = await API.fetchCredits(movieId);
-                
-                //Get directors only
-                const directors = credits.crew.filter(
-                    member => member.job === 'Director'
-                );
+                const movie = await API.fetchTV(movieId);
+                const credits = await API.fetchTVCredits(movieId);
 
                 setState({
                     ...movie,
                     actors: credits.cast,
-                    directors //directors : directors
                 })
 
                 setLoading(false);
@@ -45,7 +39,7 @@ export const useMovieFetch = movieId =>{
             return;
         }
 
-        fetchMovie();
+        fetchSingleTV();
     },[movieId]);
 
     //WRITE TO sessionStorage

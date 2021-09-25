@@ -19,7 +19,7 @@ export const Content = styled.div`
     padding: 20px 0;
     margin: 0 auto;
     color: var(--purple);
-
+    position: relative;
     a{
         color: var(--white);
         text-shadow: 5px 5px 8px var(--purple);
@@ -40,21 +40,64 @@ export const LogoImg = styled.img`
     }
 `;
 
-export const Form = styled.form`
-    padding-top: 10px;
-    position: relative;
+export const UL = styled.ul`
     max-width: var(--maxWidth);
+    max-height: 100vh;
     margin: 0 auto;
-    input{
-        width: 100%;
-        height: 40px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 98;
+    width: 100%;
+    li{
+        z-index: 98;
+        padding: 10px 20px;
+        padding-left: 60px;
+        position: relative;
+        a{
+            font-size: var(--fontMed);
+            text-decoration: none;
+            color: var(--darkGrey);
+            display: flex;
+            justify-content: space-between;
+            img{
+                position: absolute;
+                left: 10px;
+                top: 2px;
+                height: 40px;
+                width: 40px;
+                object-fit: cover;
+            }
+            p{
+                color: var(--darkGrey);
+                margin-bottom: 0;
+                &.name{
+                    text-transform: capitalize;
+                }
+                &.media-type{
+                    text-transform: uppercase;
+                }
+            }
+        }
     }
-    button{
-        position: absolute;
-        bottom: 5px;
-        right: 5px;
-        border-style: none;  
-        background-color: transparent;
-        width: 30px;
+`;
+
+export const Spinner = styled.div`
+    border: 5px solid var(--lightGrey);
+    border-top: 5px solid var(--medGrey);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 0.8s linear infinite;
+    margin: 20px auto;
+
+    @keyframes spin{
+        from{
+            transform: rotate(0deg);
+        }
+        to{
+            transform: rotate(360deg);
+        }
     }
-`;  
+
+`;

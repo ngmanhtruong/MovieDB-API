@@ -15,7 +15,7 @@ const initialState = {
 
 export const useAiringTodayFetch = () => {
     const [state, setState] = useState(initialState);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
 
     const fetchAiring = async (page)=>{

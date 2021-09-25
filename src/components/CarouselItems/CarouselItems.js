@@ -3,16 +3,28 @@ import { Link } from "react-router-dom";
 
 import { Wrapper, Image } from './CarouselItems.styles';
 
-const CarouselItems = ({ image, title, vote_average, clickable, movieId, release_date, first_air_date }) =>{
+const CarouselItems = ({ 
+    image, 
+    title, 
+    vote_average, 
+    clickable, 
+    movieId, 
+    release_date, 
+    first_air_date, }) =>{
 
     return(
         <Wrapper>
             <div className="image-wrapper">
-                {clickable ?
+                {!clickable && <Image src={image} alt="carousel-items" />}
+                {clickable && release_date &&
                 <Link to={`/movie/${movieId}`}>
                     <Image src={image} alt="carousel-items" />
                 </Link>
-                :   <Image src={image} alt="carousel-items" />
+                }
+                {clickable && first_air_date &&
+                <Link to={`/tv/${movieId}`}>
+                    <Image src={image} alt="carousel-items" />
+                </Link>
                 }
                 <div className="vote-average">
                     {vote_average > 7  

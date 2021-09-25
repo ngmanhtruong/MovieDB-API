@@ -5,25 +5,23 @@ export const Wrapper = styled.div`
     background-color: var(--medGrey);
 
     padding: 50px 0;
-    padding-left: 20px;
     box-shadow: 0px -5px 10px 0px black;
 `;
 
 export const Content = styled.div`
     max-width: var(--maxWidth);
+    padding: 0 20px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 20px;
+    display: flex;
+    justify-content: space-between;
     color: var(--white);
 
     @media screen and (max-width: 768px){
-        grid-template-columns: repeat(1, 1fr);
+        flex-direction: column;
     }
 
     div{
         display: flex;
-        align-items: center;
         flex-direction: column;
         padding-bottom: 20px;
         a{

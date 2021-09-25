@@ -7,7 +7,8 @@ export const Wrapper = styled.div`
     url(${({ image }) => image}), var(--lightGrey);
     background-size: 100% , cover;
     background-position: center;
-    height: 600px;
+    background-repeat: no-repeat;
+    height: 800px;
     position: relative;
     animation: animateHeroImage 1s;
 
@@ -18,6 +19,9 @@ export const Wrapper = styled.div`
         to {
             opacity: 1;
         }
+    }
+    @media screen and (max-width: 1600px){
+        height: 600px;
     }
 `;
 
@@ -38,7 +42,7 @@ export const Content = styled.div`
 `;
 
 export const Text = styled.div`
-    z-index: 100;
+    z-index: 97;
     max-width: 700px;
     position: absolute;
     bottom: 40px;

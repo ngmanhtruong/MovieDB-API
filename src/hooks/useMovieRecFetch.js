@@ -13,7 +13,7 @@ const initialState = {
 
 export const useMovieRecFetch = movieId =>{
     const [state, setState] = useState(initialState);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
 
     const fetchMovieRecs = async (movieId, page)=>{

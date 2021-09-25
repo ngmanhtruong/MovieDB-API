@@ -18,7 +18,7 @@ const People = () => {
     const {state, loading, error, setSearchTerm, searchTerm, setIsLoadingMore} = usePeopleFetch();
     
     if(error) return <div>Did Something went wrong ...</div>;
-    console.log(state);
+    // console.log(state);
     return (
         <>
             <SearchBar setSearchTerm={setSearchTerm} text="Search for actors, directors, ..."/>
