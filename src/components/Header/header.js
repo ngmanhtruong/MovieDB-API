@@ -106,7 +106,7 @@ const Header = ()=> {
                         {user
                         ? <MenuItem onClick={handleClose}>Log Out</MenuItem> 
                         : <MenuItem onClick={handleClose} className="isMobile"><Link to='/login'>Log In</Link></MenuItem> }
-                        <MenuItem onClick={handleClose} className="isMobile"><Link to='/'>Movies</Link></MenuItem>
+                        <MenuItem onClick={handleClose} className="isMobile"><Link to='/movies'>Movies</Link></MenuItem>
                         <MenuItem onClick={handleClose} className="isMobile"><Link to='/tvshows'>TV & Shows</Link></MenuItem>
                         <MenuItem onClick={handleClose} className="isMobile"><Link to='/people'>People</Link></MenuItem>
                         <MenuItem onClick={scrollTop,showSearch} id="search-button">Search 

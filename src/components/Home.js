@@ -8,8 +8,11 @@ import Thumb from "./Thumb/Thumb";
 import Spinner from './Spinner/Spinner';
 import SearchBar from "./SearchBar/SearchBar";
 import Button from "./Button/Button";
-import { Link } from "react-router-dom";
 import Title from "./Title/Title";
+import Carousel from "./Carousel/Carousel";
+import CarouselItems from "./CarouselItems/CarouselItems";
+import CarouselTrailers from "./CarouselTrailers/CarouselTrailers";
+import TrailersItem from "./TrailersItem/TrailersItem";
 //Hook
 import { useHomeFetch } from '../hooks/useHomeFetch';
 import { useUpcomingFetch } from "../hooks/useUpcomingFetch";
@@ -17,10 +20,35 @@ import { useUpcomingFetch } from "../hooks/useUpcomingFetch";
 import NoImage from '../images/no_image.jpg';
 
 
+
 const Home = () => {
-    const {state, loading, error, setSearchTerm, searchTerm, setIsLoadingMore} = useHomeFetch();
-    const { state : upcomingState, loading : upcomingLoading, error : upcomingError, setIsLoadingMore : upSetIsLoadingMore } = useUpcomingFetch();
+    const {
+        state, 
+        loading, 
+        error, 
+        setSearchTerm, 
+        searchTerm, 
+        setIsLoadingMore,
+        latestMovie,
+        latestTV,
+        trending
+    } = useHomeFetch();
+
+    const { 
+        state : upcomingState, 
+        loading : upcomingLoading, 
+        error : upcomingError, 
+        setIsLoadingMore : upSetIsLoadingMore, 
+        searchTerm : upSearchTerm,
+        setSearchTerm : upSetSearchTerm 
+    } = useUpcomingFetch();
+
     const [popular, setPopular] = useState(true);
+    const [heroImage, setHeroImage] = useState([]);
+    const [trailer, setTrailer] = useState('movie');
+    const [background, setBackGround] = useState('');
+    const random = Math.floor(Math.random() * 10);
+
     const handleMovies = (type) =>{
         if (type === 'upcoming'){
             setPopular(false);
@@ -28,19 +56,90 @@ const Home = () => {
             setPopular(true);
         }
     }
-    console.log(state);
+    //setHeroImage
+    useEffect(()=>{
+        setHeroImage(state.results[random]);
+    },[setHeroImage, state])
+
+    //setBackgroundTrailers
+    useEffect(()=>{
+        if(trailer && latestMovie.page > 0)
+            setBackGround(`${IMAGE_BASE_URL}original${latestMovie.results[0].backdrop_path}`);
+        if(!trailer && latestTV.page > 0)
+            setBackGround(`${IMAGE_BASE_URL}original${latestTV.results[0].backdrop_path}`);
+    },[trailer, latestMovie, setBackGround, latestTV])
+
+    const onMouseEnterHandler = (path) => {
+        setBackGround(`${IMAGE_BASE_URL}original${path}`);
+        console.log("clicked");
+    }
+
     if(error) return <div>Did Something went wrong ...</div>;
     if(upcomingError) return <div>Did Something went wrong ...</div>;
+
+    console.log(latestTV);
     return (
         <>
-            {!searchTerm && state.results[0] ?
+            {!searchTerm && heroImage ?
             <HeroImage
-                image={`${IMAGE_BASE_URL}original${state.results[0].backdrop_path}`}
-                title={state.results[0].original_title}
-                text={state.results[0].overview}
+                image={`${IMAGE_BASE_URL}original${heroImage.backdrop_path}`}
+                title={heroImage.original_title}
+                text={heroImage.overview}
             />
             : null}
-            <SearchBar setSearchTerm={setSearchTerm} text="Search Movies"/>
+
+            {trailer && latestTV && latestMovie
+            ?
+                <CarouselTrailers 
+                    background = {background}
+                    setTrailer = {setTrailer}
+                    trailer = {trailer}
+                >
+                    {latestMovie.results.map((movie, index) => {
+                        if(movie.trailers.results[0])
+                        return (
+                        <TrailersItem 
+                            key = {movie.id}
+                            image= {
+                                movie.backdrop_path ? IMAGE_BASE_URL + 'w500' + movie.backdrop_path 
+                                : NoImage
+                            }
+                            title = {movie.trailers.results[0].name}
+                            backgroundLink = {movie.backdrop_path ? IMAGE_BASE_URL + 'original' + movie.backdrop_path 
+                            : NoImage}
+                            videoId = {movie.trailers.results[0].key}
+                        />
+                    )})}
+                </CarouselTrailers>
+            :
+                <CarouselTrailers
+                    background = {background}
+                    setTrailer = {setTrailer}
+                    trailer = {trailer}
+                >
+                    {latestTV.results.map((movie,index) => {
+                        if(movie.trailers.results[0])
+                        return (
+                        <TrailersItem 
+                            key = {movie.id}
+                            image= {
+                                movie.backdrop_path ? IMAGE_BASE_URL + 'w500' + movie.backdrop_path 
+                                : NoImage
+                            }
+                            title = {movie.trailers.results[0].name}
+                            backgroundLink = {movie.backdrop_path ? IMAGE_BASE_URL + 'original' + movie.backdrop_path 
+                            : NoImage}
+                            videoId = {movie.trailers.results[0].key}
+                        />
+                    )
+                    })}
+
+                </CarouselTrailers>
+            }
+            {popular ?
+            <SearchBar setSearchTerm={setSearchTerm} text="Search Popular"/>
+            : <SearchBar setSearchTerm={upSetSearchTerm} text="Search Upcoming"/>
+            }
             {!searchTerm && popular 
             ?
             <Title>
@@ -96,7 +195,7 @@ const Home = () => {
             </>
             : 
             <>
-                <Grid header={searchTerm && 'Search Result'}>
+                <Grid header={upSearchTerm && 'Search Result'}>
                     {upcomingState.results.map(movie=>(
                         <Thumb
                             key={movie.id}
@@ -118,6 +217,23 @@ const Home = () => {
                 )}
             </>
             }
+            <Carousel header='Top Searching This Week'>
+                {trending.results.map(trending =>(
+                    <CarouselItems 
+                        key={trending.id}
+                        clickable
+                        image={
+                            trending.poster_path ? IMAGE_BASE_URL + POSTER_SIZE + trending.poster_path
+                            : NoImage
+                        }
+                        movieId={trending.id}
+                        title={trending.name ? trending.name : trending.title}
+                        release_date = {trending.release_date}
+                        first_air_date = {trending.first_air_date}
+                    />
+                ))}
+            </Carousel>
+
         </>
     )
 }

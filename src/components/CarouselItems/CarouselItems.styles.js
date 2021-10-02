@@ -4,9 +4,8 @@ export const Wrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    padding: 0 20px;
-    padding-bottom: 40px;
-    width: 200px;
+    padding: ${({ isCarousel }) => isCarousel ? '0 20px' : '0'};
+    width: ${({ isCarousel }) => isCarousel ? '200px' : '100%'};
     a{
         height: 100%;
         width: 100%;
@@ -55,12 +54,12 @@ export const Wrapper = styled.div`
 
 export const Image = styled.img`
     width: 100%;
-    height: 240px;
-    max-width: 200px;
+    height: ${({ isCarousel }) => isCarousel ? '240px' : '100%'};
+    max-width: ${({ isCarousel }) => isCarousel ? '200px' : 'none'};
     transition: all 0.3s;
     object-fit: cover;
-    border-radius: 10px;
-    border: solid 5px white;
+    border-radius: 10px; 
+    border: ${({ isCarousel }) => isCarousel ? 'solid 5px white' : 'none'};
     animation: animateThumb 0.5s;
     box-shadow: 0 2px 8px black;
     :hover{

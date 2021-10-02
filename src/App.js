@@ -10,7 +10,6 @@ import Movie from './components/Movie';
 import Movies from './components/Movies';
 import NotFound from './components/NotFound';
 import TVShows from './components/TVshows';
-import Upcoming from './components/Upcoming';
 import People from './components/People';
 import TV from './components/TV';
 import Testing from './components/Testing';
@@ -19,6 +18,7 @@ import UserProvider from './context';
 
 //styles
 import { GlobalStyle } from './GlobalStyle';
+import Person from './components/Person';
 
 
 const App = () =>(
@@ -40,6 +40,7 @@ const App = () =>(
         
         <Route path='/people' children={<People />} />
         {/* <Route path='/testing' children={<Testing />} /> */}
+        <Route path='/person/:id' children={<Person />} />
 
         <Route path='/*' children={<NotFound />} />
       </Switch>

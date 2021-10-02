@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
 //styles
-import { Wrapper } from './TopRating.styles';
+import { Wrapper } from './TopRatingTV.styles';
 
 //Hooks
-import { useTopRatingFetch } from '../../hooks/useTopRating';
+import { useTopRatingFetchTV } from '../../hooks/useTopRatingTV';
+
 //Config
 import { IMAGE_BASE_URL, POSTER_SIZE } from "../../config";
 //Components
@@ -14,13 +15,8 @@ import NoImage from '../../images/no_image.jpg';
 import { Spinner } from "../Spinner/Spinner.styles";
 
 
-const TopRating = ({ type }) => {
-    const [thisType,_setThisType] = useState(type);
-    const { state, loading, error, setType } = useTopRatingFetch();
-
-    useEffect(()=>{
-        setType(thisType);
-    },[thisType, setType])
+const TopRatingTV = () => {
+    const { state, loading, error} = useTopRatingFetchTV();
 
 
     if(error) return <div>Something went wrong...</div>;
@@ -30,25 +26,6 @@ const TopRating = ({ type }) => {
         <>
         <Wrapper>
             {loading && <Spinner />}
-            {type === "movie" &&
-            <Carousel header="Top Rated Movies">
-                {state.results.map(movie=>(
-                    <CarouselItems 
-                    key={movie.id}
-                    clickable
-                    image={
-                        movie.poster_path ? IMAGE_BASE_URL + POSTER_SIZE + movie.poster_path
-                        : NoImage
-                    }
-                    movieId={movie.id}
-                    title={movie.title}
-                    vote_average={movie.vote_average}
-                    release_date={movie.release_date}
-                    />
-                ))}
-            </Carousel>
-            }
-            {type === "tv" &&
             <Carousel header="Top Rated TV & Shows">
                 {state.results.map(movie=>(
                     <CarouselItems 
@@ -65,11 +42,10 @@ const TopRating = ({ type }) => {
                     />
                 ))}
             </Carousel>
-            }
         </Wrapper>
 
         </>
     )
 }
 
-export default TopRating;
+export default TopRatingTV;

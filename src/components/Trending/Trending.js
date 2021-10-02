@@ -11,6 +11,7 @@ import Carousel from "../Carousel/Carousel";
 import CarouselItems from "../CarouselItems/CarouselItems";
 import NoImage from '../../images/no_image.jpg';
 import { Spinner } from "../Spinner/Spinner.styles";
+import Grid from '../Grid/Grid';
 //styles
 import { Wrapper } from './Trending.styles';
 
@@ -29,14 +30,12 @@ const Trending = ({ time, type}) => {
     
     if(error) return <div>Something went wrong...</div>;
     //console.log(state);
-
-
     return (
         <>
         <Wrapper>
             {loading && <Spinner />}
             {type==="movie" &&
-            <Carousel header="Trending Movies">
+            <Grid header="Trending Movies" isHome={false}>
                 {state.results.map(movie=>(
                     <CarouselItems 
                     key={movie.id}
@@ -49,9 +48,10 @@ const Trending = ({ time, type}) => {
                     title={movie.title}
                     vote_average={movie.vote_average}
                     release_date={movie.release_date}
+                    isCarousel = {false}
                     />
                 ))}
-            </Carousel>
+            </Grid>
             }
             {type==="tv" &&
             <Carousel header="Trending TV & Shows">

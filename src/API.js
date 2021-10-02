@@ -31,7 +31,7 @@ const apiSettings = {
     return await (await fetch(endpoint)).json();
   },
   fetchMovie: async movieId => {
-    const endpoint = `${API_URL}movie/${movieId}?api_key=${API_KEY}`;
+    const endpoint = `${API_URL}movie/${movieId}?api_key=${API_KEY}&append_to_response=videos`;
     return await (await fetch(endpoint)).json();
   },
   fetchMoviesWithGenres: async (page, genreforURL) =>{
@@ -55,7 +55,11 @@ const apiSettings = {
     return await (await fetch(endpoint)).json();
   },
   fetchLatest: async () => {
-    const endpoint = `${API_URL}movie/latest?api_key=${API_KEY}&language=en-US`;
+    const endpoint = `${API_URL}discover/movie?api_key=${API_KEY}&language=en-US&sort_by=release_date.desc&include_video=true&page=1`;
+    return await (await fetch(endpoint)).json();
+  },
+  fetchSimilar: async (movieId, page) => {
+    const endpoint = `${API_URL}movie/${movieId}/similar?api_key=${API_KEY}&language=en-US&page=${page}`;
     return await (await fetch(endpoint)).json();
   },
 
@@ -73,9 +77,30 @@ const apiSettings = {
     return await (await fetch(endpoint)).json();
   },
   fetchTV: async (id) => {
-    const endpoint = `${API_URL}tv/${id}?api_key=${API_KEY}&language=en-US`;
+    const endpoint = `${API_URL}tv/${id}?api_key=${API_KEY}&append_to_response=videos&language=en-US`;
+    return await (await fetch(endpoint)).json();
+  },  
+  fetchTopRatedTV: async (page) => {
+    const endpoint = `${API_URL}tv/top_rated?api_key=${API_KEY}&language=en-US&page=${page}`;
     return await (await fetch(endpoint)).json();
   },
+  fetchLatestTV: async () => {
+    const endpoint = `${API_URL}discover/tv?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_video=true&page=1`;
+    return await (await fetch(endpoint)).json();
+  },
+
+  //FETCH TRENDING
+  fetchTrendingSearch : async () => {
+    const endpoint = `${API_URL}trending/all/week?api_key=${API_KEY}`;
+    return await (await fetch(endpoint)).json();
+  },
+
+  //MULTI SEARCH
+  fetchMultiSearch : async (searchTerm) => {
+    const endpoint = `${API_URL}search/multi?api_key=${API_KEY}&language=en-US&query=${searchTerm}`;
+    return await (await fetch(endpoint)).json();
+  },
+
   //FETCH PEOPLE
   fetchPeople : async (searchTerm, page) => {
     const endpoint = searchTerm 
@@ -87,12 +112,8 @@ const apiSettings = {
     const endpoint = `${API_URL}person/${personId}?api_key=${API_KEY}&language=en-US`;
     return await (await fetch(endpoint)).json();
   },
-  fetchMultiSearch : async (searchTerm) => {
-    const endpoint = `${API_URL}search/multi?api_key=${API_KEY}&language=en-US&query=${searchTerm}`;
-    return await (await fetch(endpoint)).json();
-  },
-  fetchTrendingSearch : async () => {
-    const endpoint = `${API_URL}trending/all/week?api_key=${API_KEY}`;
+  fetchPersonCredits: async (personId) =>{
+    const endpoint = `${API_URL}person/${personId}/combined_credits?api_key=${API_KEY}&language=en-US`;
     return await (await fetch(endpoint)).json();
   },
 

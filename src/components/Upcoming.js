@@ -20,7 +20,7 @@ const Upcoming = () => {
     const {state, loading, error, setSearchTerm, searchTerm, setIsLoadingMore} = useUpcomingFetch();
     
     if(error) return <div>Did Something went wrong ...</div>;
-    console.log(state);
+    // console.log(state);
     
     return (
         <>

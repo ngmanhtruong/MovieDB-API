@@ -17,6 +17,9 @@ export const useHomeFetch = () => {
     const [loading,setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [isLoadingMore, setIsLoadingMore] = useState(false);
+    const [latestMovie, setLatestMovie] = useState(initialState);
+    const [latestTV, setLatestTV] = useState(initialState);
+    const [trending, setTrending] = useState(initialState);
 
     const fetchMovies = async (page, searchTerm="")=>{
         try{
@@ -24,11 +27,44 @@ export const useHomeFetch = () => {
             setLoading(true);
 
             const movies = await API.fetchMovies(searchTerm, page);
+            const latestTV = await API.fetchPopularTV();
+            const trending = await API.fetchTrendingSearch();
+            const latestMovie = await API.fetchMovies('', 1);
+
+            const tvArr = await Promise.all(latestTV.results.map(async (value, index) => {
+                const trailers = await API.fetchTV(value.id);
+                return latestTV.results[index].trailers = trailers.videos;
+            }));
+
+            const movieArr = await Promise.all(latestMovie.results.map(async (value, index) => {
+                const trailers = await API.fetchMovie(value.id);
+                return latestMovie.results[index].trailers = trailers.videos;
+            }));
+
+            // console.log(tvArr, movieArr);
 
             setState(prev=>({
                 ...movies,
                 results:
                     page > 1 ? [...prev.results, ...movies.results] : [...movies.results] 
+            }));
+            setLatestMovie(prev=>({
+                ...latestMovie,
+                results:
+                    page > 1 ? [...prev.results, ...latestMovie.results] : [...latestMovie.results],
+                // trailers: movieArr
+            }));
+            setLatestTV(prev=>({
+                ...latestTV,
+                results:
+                    page > 1 ? [...prev.results, ...latestTV.results] : [...latestTV.results],
+                // trailers: tvArr
+            }));
+            setTrending(prev=>({
+                ...trending,
+                results:
+                    page > 1 ? [...prev.results, ...trending.results] : [...trending.results],
+
             }));
         } catch (error){
             setError(true);
@@ -40,15 +76,22 @@ export const useHomeFetch = () => {
     useEffect(() => {
         if(!searchTerm){
             const sessionState = isPersistedState('homeState');
+            const latestMovieState = isPersistedState('latestMovieState');
+            const latestTVState = isPersistedState('latestTVState');
+            const trendingState = isPersistedState('trendingState');
 
-            if (sessionState) {
-                console.log("GRABBING FROM HOMESTATE");
+            if (sessionState && latestMovieState && latestTVState && trendingState) {
+                // console.log("GRABBING FROM HOMESTATE");
+                setLatestMovie(latestMovieState);
+                setLatestTV(latestTVState);
                 setState(sessionState);
+                setTrending(trendingState);
                 return;
             }
         }
-        console.log("GRABBING FROM API");
+        // console.log("GRABBING FROM API");
         fetchMovies(1, searchTerm);
+
     }, [searchTerm]);
 
     //Load more
@@ -60,8 +103,23 @@ export const useHomeFetch = () => {
 
     //Write to sessionStorage
     useEffect(()=>{
-        if(!searchTerm) sessionStorage.setItem('homeState',JSON.stringify(state));
-    },[searchTerm,state]);
+        if(!searchTerm){
+            sessionStorage.setItem('homeState',JSON.stringify(state));
+            sessionStorage.setItem('latestMovieState',JSON.stringify(latestMovie));
+            sessionStorage.setItem('latestTVState',JSON.stringify(latestTV));
+            sessionStorage.setItem('trendingState',JSON.stringify(trending));
+        } 
+    },[searchTerm, state, latestMovie, latestTV, trending]);
 
-    return { state, loading, error, setSearchTerm, searchTerm, setIsLoadingMore };
+    return { 
+        state, 
+        loading, 
+        error, 
+        setSearchTerm, 
+        searchTerm, 
+        setIsLoadingMore, 
+        latestMovie, 
+        latestTV,
+        trending 
+    };
 };

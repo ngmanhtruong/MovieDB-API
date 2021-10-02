@@ -14,13 +14,13 @@ import NoImage from '../images/no_image.jpg';
 import Trending from "./Trending/Trending";
 import NowPlaying from "./NowPlaying/NowPlaying";
 import TopRating from "./TopRating/TopRating";
-import Genres from "./Genres/Genres";
+import BreadCrumb from "./BreadCrumb/BreadCrumb";
+
 
 
 const Movies = () => {
     const {state, loading, error} = useHomeFetch();
-    const [selectedGenres,setSelectedGenres] = useState([]);
-    const [genres, setGenres] = useState([]);
+
     if(error) return <div>Something went wrong...</div>;
 
     const random = Math.floor(Math.random() * state.results.length);
@@ -28,6 +28,8 @@ const Movies = () => {
 
     return (
         <>  
+            <BreadCrumb movieTitle="Movies"/>
+
             {!loading && randomHeroImage && 
             <HeroImage 
                 image={`${IMAGE_BASE_URL}original${randomHeroImage.backdrop_path}`}

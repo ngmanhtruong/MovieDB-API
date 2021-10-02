@@ -7,6 +7,7 @@ import Spinner from './Spinner/Spinner';
 import SearchBar from "./SearchBar/SearchBar";
 import Button from "./Button/Button";
 import Actor from "./Actor/Actor";
+import BreadCrumb from "./BreadCrumb/BreadCrumb";
 //Hook
 import { usePeopleFetch } from "../hooks/usePeopleFetch";
 //Image
@@ -21,6 +22,7 @@ const People = () => {
     // console.log(state);
     return (
         <>
+            <BreadCrumb movieTitle="Actors & Directors" />
             <SearchBar setSearchTerm={setSearchTerm} text="Search for actors, directors, ..."/>
             <Grid header={searchTerm && 'Search Result'}>
                 {state.results.map(person=>(

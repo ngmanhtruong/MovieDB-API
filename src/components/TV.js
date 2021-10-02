@@ -8,11 +8,10 @@ import TVInfo from './TVInfo/TVInfo';
 
 //Hook
 import { useTVFetch } from '../hooks/useTVFetch';
+
 //Image
-import NoImage from '../images/no_image.jpg';
 import Actor from './Actor/Actor';
 import Carousel from './Carousel/Carousel';
-import CarouselMovies from './CarouselMovies/CarouselMovies';
 import NoPersonImage from '../images/no-image.svg';
 
 
@@ -26,7 +25,7 @@ const TV = () => {
     console.log(state);
     return (
         <>
-            <BreadCrumb movieTitle={state.title} />
+            <BreadCrumb movieTitle={state.name} />
             <TVInfo movie={state} />
 
             {state.actors &&

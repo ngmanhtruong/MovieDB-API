@@ -9,9 +9,10 @@ import HeroImage from "./HeroImage/HeroImage";
 import { usePopularTvFetch } from "../hooks/usePopularTvFetch";
 
 //Components
-import TopRating from "./TopRating/TopRating";
+import TopRatingTV from './TopRatingTV/TopRatingTV';
 import PopularTV from "./PopularTV/PopularTV";
 import AiringToday from "./AiringToday/AiringToday";
+import BreadCrumb from "./BreadCrumb/BreadCrumb";
 
 
 
@@ -24,6 +25,7 @@ const TVShows = () => {
 
     return (
         <>  
+            <BreadCrumb movieTitle="TV & Shows"/>
             {!loading && randomHeroImage && 
             <HeroImage 
                 image={`${IMAGE_BASE_URL}original${randomHeroImage.backdrop_path}`}
@@ -32,7 +34,7 @@ const TVShows = () => {
             }
             <PopularTV />
             <AiringToday />
-            <TopRating type="tv"/>
+            <TopRatingTV />
         </>
     )
 }

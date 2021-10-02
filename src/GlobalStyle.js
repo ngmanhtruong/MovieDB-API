@@ -88,5 +88,29 @@ export const GlobalStyle =  createGlobalStyle`
         font-weight: 300;
         color: var(--darkGrey);
     }
+    .modal-video{
+        position: fixed;
+        z-index: 999;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: rgba(0,0,0,0.5);
+        
+        iframe{
+            width: 80%;
+            height: 80%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .modal-video-close-btn{
+            display: none;
+        }
+        .modal-video-body, .modal-video-inner, .modal-video-movie-wrap{
+            padding-left: 0px;
+        }
+    }
 
 `;

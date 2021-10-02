@@ -26,9 +26,6 @@ const HeaderSearchbar = ({ setSearchTerm, children, setSearch }) =>{
         }
     },[setSearchTerm, state])
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-    }
     const handleClick = (e) => {
         e.preventDefault();
         if(click){

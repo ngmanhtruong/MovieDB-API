@@ -10,28 +10,31 @@ const CarouselItems = ({
     clickable, 
     movieId, 
     release_date, 
-    first_air_date, }) =>{
+    first_air_date,
+    isCarousel= true }) =>{
 
     return(
-        <Wrapper>
+        <Wrapper isCarousel = {isCarousel}>
             <div className="image-wrapper">
                 {!clickable && <Image src={image} alt="carousel-items" />}
                 {clickable && release_date &&
                 <Link to={`/movie/${movieId}`}>
-                    <Image src={image} alt="carousel-items" />
+                    <Image src={image} alt="carousel-items" isCarousel = {isCarousel}/>
                 </Link>
                 }
                 {clickable && first_air_date &&
                 <Link to={`/tv/${movieId}`}>
-                    <Image src={image} alt="carousel-items" />
+                    <Image src={image} alt="carousel-items" isCarousel = {isCarousel}/>
                 </Link>
                 }
+                {vote_average &&
                 <div className="vote-average">
                     {vote_average > 7  
                     ? <span className="green" title={`IMDB ratings: ${vote_average}`}>{vote_average}</span>
                     : <span className="yellow" title={`IMDB ratings: ${vote_average}`}>{vote_average}</span>
                     }
                 </div>
+                }
             </div>
             <div className="text">
                 <p title={title}>{title}</p>

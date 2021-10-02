@@ -43,12 +43,12 @@ export const useUpcomingFetch = () => {
             const sessionState = isPersistedState('upcomingState');
 
             if (sessionState) {
-                console.log("GRABBING FROM SESSIONSTORAGE");
+                // console.log("GRABBING FROM SESSIONSTORAGE");
                 setState(sessionState);
                 return;
             }
         }
-        console.log("GRABBING FROM API");
+        // console.log("GRABBING FROM API");
         fetchUpcoming(1, searchTerm);
     }, [searchTerm]);
 

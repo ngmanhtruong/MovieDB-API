@@ -16,15 +16,13 @@ export const Content = styled.div`
     width: 100%;
     max-width: var(--maxWidth);
     padding: 0 20px;
-
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     span {
         font-size: var(--fontBig);
         color: var(--white);
         padding-right: 10px;
-
-        @media screen and (max-width: 720px){
-            font-size: var(--fontSmall);
-        }
     }
     a {
         font-size: var(--fontBig);

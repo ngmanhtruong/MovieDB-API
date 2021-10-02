@@ -6,7 +6,6 @@ export const Wrapper = styled.div`
         rgba(0,0,0,0.65) 100%), 
     url(${({ image }) => image}), var(--lightGrey);
     background-size: 100% , cover;
-    background-position: center;
     background-repeat: no-repeat;
     height: 800px;
     position: relative;

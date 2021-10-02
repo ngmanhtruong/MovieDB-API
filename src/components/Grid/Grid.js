@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 //Styles
 import { Wrapper, Content } from './Grid.styles';
 
-const Grid = ({header, children}) => (
+const Grid = ({header, children, isHome = true}) => (
     <Wrapper>
         <h1><a>{header}</a></h1>
-        <Content>{children}</Content>
+        <Content home = {isHome}>{children}</Content>
     </Wrapper>
 
 )
