@@ -13,7 +13,6 @@ import MovieInfoBar from './MovieInfoBar/MovieInfoBar';
 import { useMovieFetch } from '../hooks/useMovieFetch';
 
 //Image
-import NoImage from '../images/no_image.jpg';
 import Actor from './Actor/Actor';
 import Carousel from './Carousel/Carousel';
 import NoPersonImage from '../images/no-image.svg';
@@ -27,7 +26,7 @@ const Movie = () => {
     
     if (loading) return <Spinner />;
     if (error) return <div>Something went wrong...</div>;
-    console.log(state);
+    // console.log(state);
 
     return (
         <>
@@ -43,7 +42,7 @@ const Movie = () => {
 
             {state.directors &&
             <Carousel header='Directors'>
-                {state.directors.map(director=>(
+                {state.directors.map(director => (
                     <Actor
                         key={director.credit_id}
                         clickable
@@ -54,6 +53,7 @@ const Movie = () => {
                             ? `${IMAGE_BASE_URL}${POSTER_SIZE}${director.profile_path}`
                             : NoPersonImage
                         }
+                        personId={director.id}
                     />
                 ))}
             </Carousel>
@@ -71,11 +71,12 @@ const Movie = () => {
                             ? `${IMAGE_BASE_URL}${POSTER_SIZE}${actor.profile_path}`
                             : NoPersonImage
                         }
+                        personId={actor.id}
                     />
                 ))}
             </Carousel>
             }
-            <MovieRec movieId = {movieId}/>
+            <MovieRec movieId = {movieId} header = 'Recommendations'/>
         </>
     )
 }

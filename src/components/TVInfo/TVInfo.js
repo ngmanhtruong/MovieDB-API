@@ -45,7 +45,7 @@ const TVInfo = ({ movie })=> {
             />
             <Text>
                 <h1>{movie.name}</h1>
-                <h3>PLOT</h3>
+                <h3>Overview</h3>
                 {movie.overview ?
                 <p>{movie.overview}</p>
                 : <p>This movie doesn't have overview yet!</p>}

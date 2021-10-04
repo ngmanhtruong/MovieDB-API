@@ -16,32 +16,41 @@ import CarouselMovies from '../CarouselMovies/CarouselMovies';
 import { Wrapper } from './MovieRec.styles';
 
 
-const MovieRec = ({ movieId }) => {
+const MovieRec = ({ movieId, header }) => {
     const {state, loading, error } = useMovieRecFetch(movieId);
     if(error) return <div>Something went wrong...</div>;
-    //console.log(state);
+
+    console.log(state);
+
+    if(state.results.length == 0){
+        return (
+        <Carousel header ='No Recommendations Found' >
+
+        </Carousel>
+        )
+    }
 
     return (
         <>
-        <Wrapper>
-            {loading && <Spinner />}
-            <Carousel header='Recommendations'>
-                {state.results.map(recommend=>(
-                    <CarouselMovies
-                        key={recommend.id}
-                        clickable
-                        image={
-                            recommend.poster_path ? IMAGE_BASE_URL + POSTER_SIZE + recommend.poster_path 
-                            : NoImage
-                        }
-                        movieId={recommend.id}
-                        title={recommend.title}
-                        vote_average={recommend.vote_average}
-                    />
-                ))}
-            </Carousel>
-        </Wrapper>
-
+            <Wrapper>
+                {loading && <Spinner />}
+                <Carousel header={header}>
+                    {state.results.map(recommend=>(
+                        <CarouselMovies
+                            key={recommend.id}
+                            clickable
+                            image={
+                                recommend.poster_path ? IMAGE_BASE_URL + POSTER_SIZE + recommend.poster_path 
+                                : NoImage
+                            }
+                            movieId={recommend.id}
+                            title={recommend.title}
+                            vote_average={recommend.vote_average}
+                            media_type = {recommend.media_type}
+                        />
+                    ))}
+                </Carousel>
+            </Wrapper>
         </>
     )
 }

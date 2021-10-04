@@ -5,16 +5,20 @@ import { Link } from "react-router-dom";
 import { Wrapper , Image } from './CarouselMovies.styles';
 
 
-const CarouselMovies = ({ image, title, vote_average, clickable, movieId }) =>{
+const CarouselMovies = ({ image, title, vote_average, clickable, movieId, media_type }) =>{
     vote_average = vote_average.toFixed(1);
     return(
         <Wrapper>
             <div className="image-wrapper">
-                {clickable ?
+                {clickable && media_type == 'movie' ?
                 <Link to={`/movie/${movieId}`}>
                     <Image src={image} alt="carousel-movies" />
                 </Link>
-                :   <Image src={image} alt="carousel-movies" />
+                : clickable && media_type == 'tv' ?
+                <Link to={`/tv/${movieId}`}>
+                    <Image src={image} alt="carousel-movies" />
+                </Link>
+                :<Image src={image} alt="carousel-movies" />
                 }
                 <div className="vote-average">
                     {vote_average > 7  

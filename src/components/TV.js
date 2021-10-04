@@ -41,6 +41,7 @@ const TV = () => {
                             ? `${IMAGE_BASE_URL}${POSTER_SIZE}${actor.profile_path}`
                             : NoPersonImage
                         }
+                        personId={actor.id}
                     />
                 ))}
             </Carousel>

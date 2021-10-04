@@ -14,11 +14,11 @@ const CarouselTrailers = ({ background, children, setTrailer, trailer }) => {
         <Wrapper background={background}>
             <h1>Latest Trailers</h1>
             <Title>
-                <a className={trailer && 'active'} onClick={()=> setTrailer(true)}>
+                <a className={trailer ? 'active' : undefined} onClick={()=> setTrailer(true)}>
                     On Theater
                 </a>
                 <span>|</span>
-                <a className={!trailer && 'active'} onClick={()=> setTrailer(false)}>
+                <a className={!trailer ? 'active' : undefined} onClick={()=> setTrailer(false)}>
                     On TV
                 </a>
             </Title>

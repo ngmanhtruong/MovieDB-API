@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+//Swipeable
+
 //Config
 import { POSTER_SIZE, BACKDROP_SIZE, IMAGE_BASE_URL } from '../config';
 //Components
@@ -18,8 +20,6 @@ import { useHomeFetch } from '../hooks/useHomeFetch';
 import { useUpcomingFetch } from "../hooks/useUpcomingFetch";
 //Image
 import NoImage from '../images/no_image.jpg';
-
-
 
 const Home = () => {
     const {
@@ -67,7 +67,7 @@ const Home = () => {
             setBackGround(`${IMAGE_BASE_URL}original${latestMovie.results[0].backdrop_path}`);
         if(!trailer && latestTV.page > 0)
             setBackGround(`${IMAGE_BASE_URL}original${latestTV.results[0].backdrop_path}`);
-    },[trailer, latestMovie, setBackGround, latestTV])
+    },[trailer, latestMovie, latestTV])
 
     const onMouseEnterHandler = (path) => {
         setBackGround(`${IMAGE_BASE_URL}original${path}`);
@@ -77,7 +77,6 @@ const Home = () => {
     if(error) return <div>Did Something went wrong ...</div>;
     if(upcomingError) return <div>Did Something went wrong ...</div>;
 
-    console.log(latestTV);
     return (
         <>
             {!searchTerm && heroImage ?
@@ -157,16 +156,16 @@ const Home = () => {
             :
             <Title>
                 <a 
+                    onClick= {()=>handleMovies('popular')}
+                    >
+                    Popular Movies
+                </a>
+                <span>|</span>
+                <a 
                     className="active"
                     onClick={()=>handleMovies('upcoming')}
                 >
                     Upcoming Movies
-                </a>
-                <span>|</span>
-                <a 
-                    onClick= {()=>handleMovies('popular')}
-                    >
-                    Popular Movies
                 </a>
             </Title>
         }

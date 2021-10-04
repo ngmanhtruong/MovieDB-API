@@ -23,19 +23,21 @@ const People = () => {
     return (
         <>
             <BreadCrumb movieTitle="Actors & Directors" />
-            <SearchBar setSearchTerm={setSearchTerm} text="Search for actors, directors, ..."/>
+            <SearchBar 
+                setSearchTerm={setSearchTerm} 
+                text="Search for actors, directors, ..."/>
             <Grid header={searchTerm && 'Search Result'}>
                 {state.results.map(person=>(
                     <Actor
-                        key={person.credit_id}
+                        key={person.id}
                         clickable
                         name={person.name}
-                        character={person.department}
                         imageUrl={
                             person.profile_path
                             ? `${IMAGE_BASE_URL}${POSTER_SIZE}${person.profile_path}`
                             : NoPersonImage
                         }
+                        personId={person.id}
                     />
                 ))}
             </Grid>

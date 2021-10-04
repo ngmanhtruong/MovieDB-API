@@ -42,12 +42,10 @@ export const usePeopleFetch = () => {
             const sessionState = isPersistedState('peopleState');
 
             if (sessionState && sessionState.page > 0) {
-                console.log("GRABBING FROM SESSIONSTORAGE");
                 setState(sessionState);
                 return;
             }
         }
-        console.log("GRABBING FROM API");
         fetchPeople(1, searchTerm);
     }, [searchTerm]);
 

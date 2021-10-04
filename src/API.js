@@ -109,11 +109,11 @@ const apiSettings = {
     return await (await fetch(endpoint)).json();
   },
   fetchPerson : async (personId) => {
-    const endpoint = `${API_URL}person/${personId}?api_key=${API_KEY}&language=en-US`;
+    const endpoint = `${API_URL}person/${personId}?api_key=${API_KEY}&language=en-US&append_to_response=movie_credits,tv_credits,translations,external_ids`;
     return await (await fetch(endpoint)).json();
   },
-  fetchPersonCredits: async (personId) =>{
-    const endpoint = `${API_URL}person/${personId}/combined_credits?api_key=${API_KEY}&language=en-US`;
+  fetchPersonIMDB : async (id) => {
+    const endpoint = `${API_URL}find/${id}?api_key=${API_KEY}&language=en-US&external_source=imdb_id`;
     return await (await fetch(endpoint)).json();
   },
 

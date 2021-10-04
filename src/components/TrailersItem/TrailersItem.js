@@ -1,14 +1,13 @@
 import { Wrapper, Image, Title } from './TrailersItem.styles';
 import { useState } from 'react';
 import ModalVideo from 'react-modal-video';
-import PlayImage from '../../images/play.svg';
 
 const TrailersItem = ({ image, title, videoId }) => {
     const [isOpen, setOpen] = useState(false);
-
+    
     return (
         <Wrapper>
-            <Image img={PlayImage}>
+            <Image className='trailer-video'>
                 <i className="fas fa-play" onClick={()=> setOpen(true)}></i>
                 <img src={image} onClick={()=> setOpen(true)}/>
             </Image>

@@ -8,6 +8,7 @@ import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
 //Image
 import FILogo from '../../images/filmsinfo.png';
 import NoImage from '../../images/no_image.jpg';
+import NoPersonImage from '../../images/no-image.svg';
 //Component
 import HeaderSearchbar from '../HeaderSearchbar/HeaderSearchbar';
 //Styles
@@ -23,8 +24,7 @@ import { useMultiSearchFetch } from '../../hooks/useMultiSearchFetch';
 const Header = ()=> {
     const { state, loading, error, setSearchTerm, searchTerm } = useMultiSearchFetch();
     const [user] = useContext(Context);
-    const [search, setSearch] = useState(false);
-    //console.log(state);
+    const [search, setSearch] = useState(true);
 
     //mui settings
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -132,8 +132,8 @@ const Header = ()=> {
                             <li className="list-group-item" key ={item.id}>
                                 <Link to={`/person/${item.id}`} onClick={onClick}>
                                     <img 
-                                        src={item.poster_path ? IMAGE_BASE_URL + POSTER_SIZE + item.poster_path 
-                                            : NoImage}
+                                        src={item.profile_path ? IMAGE_BASE_URL + POSTER_SIZE + item.profile_path 
+                                            : NoPersonImage}
                                         alt={item.name ? item.name : item.title}
                                     />
                                     <p className="name">{item.name}</p>
