@@ -1,7 +1,7 @@
-import { Wrapper, Content, Title} from './CarouselTrailers.styles';
-import { useState } from 'react';
+import { Wrapper, Content, Title, H1} from './CarouselTrailers.styles';
+// import { useState } from 'react';
 
-const CarouselTrailers = ({ background, children, setTrailer, trailer }) => {
+const CarouselTrailers = ({ background, children, setTrailer, trailer, header, notHomePage }) => {
 
     const handleTrailer = (type) =>{
         if (type === 'movie')
@@ -11,21 +11,25 @@ const CarouselTrailers = ({ background, children, setTrailer, trailer }) => {
     }
 
     return (
-        <Wrapper background={background}>
-            <h1>Latest Trailers</h1>
-            <Title>
-                <a className={trailer ? 'active' : undefined} onClick={()=> setTrailer(true)}>
-                    On Theater
-                </a>
-                <span>|</span>
-                <a className={!trailer ? 'active' : undefined} onClick={()=> setTrailer(false)}>
-                    On TV
-                </a>
-            </Title>
-            <Content>
-                {children}
-            </Content>
-        </Wrapper>
+        <>
+            <H1>{header}</H1>
+            <Wrapper background={background}>
+                {!notHomePage &&
+                <Title>
+                    <button className={trailer ? 'active' : undefined} onClick={()=> setTrailer(true)}>
+                        On Theater
+                    </button>
+                    <span>|</span>
+                    <button className={!trailer ? 'active' : undefined} onClick={()=> setTrailer(false)}>
+                        On TV
+                    </button>
+                </Title>
+                }
+                <Content>
+                    {children}
+                </Content>
+            </Wrapper>
+        </>
     );
 }
 

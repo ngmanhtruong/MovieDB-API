@@ -16,7 +16,6 @@ const Person = () =>{
     const {id} = useParams();
     const {state, error, loading} = usePersonFetch(id);
     const [years, setYears] = useState([]); //acting
-    const [yearsCrew, setYearsCrew] = useState([]); //others
     const [cast, setCast] = useState([]);
     const [crew, setCrew] = useState([]);
     const uniqueArr = []; 
@@ -63,6 +62,7 @@ const Person = () =>{
 
     if (loading) return <Spinner />
     if (error) return <div>Something is wrong ...</div>;
+    // console.log(cast);
 
     return (
         <Wrapper>
@@ -176,7 +176,7 @@ const Person = () =>{
                         }
                         newYears = sortYears(tempArr);
                         return (
-                            <div className='info'>
+                            <div className='info' key={member.id}>
                                 <h4>{member.department}</h4>
                                 <Table>
                                     <tbody>

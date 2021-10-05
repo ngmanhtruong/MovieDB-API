@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 //styles
-import { Wrapper, Content } from './NowPlaying.styles';
+import { Wrapper} from './NowPlaying.styles';
 import { IMAGE_BASE_URL, POSTER_SIZE } from "../../config";
 //Components
 import Carousel from "../Carousel/Carousel";

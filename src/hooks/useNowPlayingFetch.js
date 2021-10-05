@@ -43,11 +43,11 @@ export const useNowPlayingFetch = () => {
 
         if (sessionState) {
             setState(sessionState);
-            console.log("GRAB FROM NOWPLAYING STORAGE");
+            // console.log("GRAB FROM NOWPLAYING STORAGE");
             setLoading(false);
             return;
         }
-        console.log("GRAB FROM API");
+        // console.log("GRAB FROM API");
         fetchNowPlaying(1);
     },[]);
 

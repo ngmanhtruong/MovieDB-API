@@ -20,7 +20,7 @@ const MovieRec = ({ movieId, header }) => {
     const {state, loading, error } = useMovieRecFetch(movieId);
     if(error) return <div>Something went wrong...</div>;
 
-    console.log(state);
+    // console.log(state);
 
     if(state.results.length == 0){
         return (

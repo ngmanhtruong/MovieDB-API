@@ -44,7 +44,7 @@ const MovieInfo = ({ movie })=> {
                     alt='Movie Thumb'
                 />
                 <Text>
-                    <h1>{movie.title}</h1>
+                    <h1 className='movie-title'>{movie.title}</h1>
                     <h3>PLOT</h3>
                     <p>{movie.overview}</p>
 
@@ -61,6 +61,58 @@ const MovieInfo = ({ movie })=> {
                             ))}
                         </div>
                         }
+                        <div className='status'>
+                            <h3>STATUS</h3>
+                            <p>{movie.status}</p>
+                        </div>
+                    </div>
+                    <div className='tagline'>
+                        <p>"{movie.tagline}"</p>
+                    </div>
+                    {movie.belongs_to_collection && 
+                    <div className ='belong-to'>
+                        <h3>BELONGS TO COLLECTION:</h3>
+                        <p>{movie.belongs_to_collection.name}</p>
+                    </div>}
+
+                    {movie.external_ids &&
+                    <div className='social-tag'>
+                        {movie.external_ids.facebook_id && 
+                        <a  
+                            key='facebook_id'
+                            href={`https://www.facebook.com/${movie.external_ids.facebook_id}`}
+                            target='_blank'
+                            // ref='noreferee'
+                        >
+                            <i className="fab fa-facebook"></i>
+                        </a>
+                        }
+                        {movie.external_ids.instagram_id && 
+                        <a 
+                            key = 'instagram_id'
+                            href={`https://www.instagram.com/${movie.external_ids.instagram_id}`}
+                            target='_blank'
+                            // ref='noreferee'
+                        >
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        }
+                        {movie.external_ids.twitter_id && 
+                        <a  
+                            key= 'twitter_id'
+                            href={`https://www.twitter.com/${movie.external_ids.twitter_id}`}
+                            target='_blank'
+                            // ref='noreferee'
+                        >
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        }
+                    </div>}
+                    <div className='genres'>
+                        <h3>GENRES</h3>
+                        {movie.genres && movie.genres.map(genre=>(
+                            <p>{genre.name}</p>
+                        ))}
                     </div>
                     {user && 
                         <div>

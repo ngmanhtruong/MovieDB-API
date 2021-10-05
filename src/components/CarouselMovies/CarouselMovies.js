@@ -10,11 +10,11 @@ const CarouselMovies = ({ image, title, vote_average, clickable, movieId, media_
     return(
         <Wrapper>
             <div className="image-wrapper">
-                {clickable && media_type == 'movie' ?
+                {clickable && media_type === 'movie' ?
                 <Link to={`/movie/${movieId}`}>
                     <Image src={image} alt="carousel-movies" />
                 </Link>
-                : clickable && media_type == 'tv' ?
+                : clickable && media_type === 'tv' ?
                 <Link to={`/tv/${movieId}`}>
                     <Image src={image} alt="carousel-movies" />
                 </Link>

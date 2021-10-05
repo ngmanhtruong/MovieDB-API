@@ -12,7 +12,7 @@ import NotFound from './components/NotFound';
 import TVShows from './components/TVshows';
 import People from './components/People';
 import TV from './components/TV';
-import Testing from './components/Testing';
+// import Testing from './components/Testing';
 //Context
 import UserProvider from './context';
 

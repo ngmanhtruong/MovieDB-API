@@ -30,8 +30,8 @@ const CarouselItems = ({
                 {vote_average &&
                 <div className="vote-average">
                     {vote_average > 7  
-                    ? <span className="green" title={`IMDB ratings: ${vote_average}`}>{vote_average}</span>
-                    : <span className="yellow" title={`IMDB ratings: ${vote_average}`}>{vote_average}</span>
+                    ? <span className="green" title={`IMDB ratings: ${vote_average}`}>{vote_average.toFixed(1)}</span>
+                    : <span className="yellow" title={`IMDB ratings: ${vote_average}`}>{vote_average.toFixed(1)}</span>
                     }
                 </div>
                 }

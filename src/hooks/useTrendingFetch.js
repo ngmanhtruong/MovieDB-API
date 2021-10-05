@@ -40,11 +40,11 @@ export const useTrendingFetch = () => {
         const sessionState = isPersistedState(`trending${type}State`);
 
         if (sessionState) {
-            console.log("GRABBING FROM SESSIONSTORAGE");
+            // console.log("GRABBING FROM SESSIONSTORAGE");
             setState(sessionState);
             return;
         }
-        console.log("GRABBING FROM TRENDING");
+        // console.log("GRABBING FROM TRENDING");
         fetchTrending(time, type);
     }, [time,type]);
 

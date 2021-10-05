@@ -20,6 +20,8 @@ export const useHomeFetch = () => {
     const [latestMovie, setLatestMovie] = useState(initialState);
     const [latestTV, setLatestTV] = useState(initialState);
     const [trending, setTrending] = useState(initialState);
+    const uniqueArr1 = [];
+    const uniqueArr2 = [];
 
     const fetchMovies = async (page, searchTerm="")=>{
         try{
@@ -32,13 +34,21 @@ export const useHomeFetch = () => {
             const latestMovie = await API.fetchMovies('', 1);
 
             const tvArr = await Promise.all(latestTV.results.map(async (value, index) => {
-                const trailers = await API.fetchTV(value.id);
-                return latestTV.results[index].trailers = trailers.videos;
+                if(!uniqueArr1.includes(value.id)){
+                    uniqueArr1.push(value.id);
+                    const trailers = await API.fetchTV(value.id);
+                    // console.log('fetching');
+                    return latestTV.results[index].trailers = trailers.videos;
+                }
             }));
 
             const movieArr = await Promise.all(latestMovie.results.map(async (value, index) => {
-                const trailers = await API.fetchMovie(value.id);
-                return latestMovie.results[index].trailers = trailers.videos;
+                if(!uniqueArr2.includes(value.id)){
+                    uniqueArr2.push(value.id);
+                    const trailers = await API.fetchMovie(value.id);
+                    // console.log('fetching');
+                    return latestMovie.results[index].trailers = trailers.videos;
+                }
             }));
 
             // console.log(tvArr, movieArr);

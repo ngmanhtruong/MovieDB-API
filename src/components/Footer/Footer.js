@@ -24,14 +24,14 @@ const Footer = () => {
                 </div>
                 <div className="column">
                     <h2>ABOUT ME</h2>
-                    <a href="https://truongnguyen.netlify.app/" target="_blank">My Page</a>
-                    <a href="mailto:ng.manhtruong1996@gmail.com">My email</a>
-                    <a href="https://github.com/ngmanhtruong" target="_blank">My Projects</a>
+                    <a href="https://truongnguyen.netlify.app/" target="_blank" rel="noreferrer">My Page</a>
+                    <a href="mailto:ng.manhtruong1996@gmail.com" rel="noreferrer">My email</a>
+                    <a href="https://github.com/ngmanhtruong" target="_blank" rel="noreferrer">My Projects</a>
                 </div>
                 <div className="column">
                     <h2>MOVIEDB</h2>
-                    <a href="https://developers.themoviedb.org/3" target="_blank">API</a>
-                    <a href="https://developers.themoviedb.org/4" target="_blank">API v4</a>
+                    <a href="https://developers.themoviedb.org/3" target="_blank" rel="noreferrer">API</a>
+                    <a href="https://developers.themoviedb.org/4" target="_blank" rel="noreferrer">API v4</a>
                 </div>
             </Content>
         </Wrapper>

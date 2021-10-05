@@ -71,7 +71,7 @@ const Home = () => {
 
     const onMouseEnterHandler = (path) => {
         setBackGround(`${IMAGE_BASE_URL}original${path}`);
-        console.log("clicked");
+        // console.log("clicked");
     }
 
     if(error) return <div>Did Something went wrong ...</div>;
@@ -93,28 +93,28 @@ const Home = () => {
                     background = {background}
                     setTrailer = {setTrailer}
                     trailer = {trailer}
+                    header='Latest Trailers'
                 >
                     {latestMovie.results.map((movie, index) => {
-                        if(movie.trailers.results[0])
-                        return (
-                        <TrailersItem 
-                            key = {movie.id}
-                            image= {
-                                movie.backdrop_path ? IMAGE_BASE_URL + 'w500' + movie.backdrop_path 
-                                : NoImage
-                            }
-                            title = {movie.trailers.results[0].name}
-                            backgroundLink = {movie.backdrop_path ? IMAGE_BASE_URL + 'original' + movie.backdrop_path 
-                            : NoImage}
-                            videoId = {movie.trailers.results[0].key}
-                        />
-                    )})}
+                        if(movie.trailers.results[0]){
+                            return (
+                                <TrailersItem 
+                                    key = {movie.id}
+                                    image= {
+                                        `https://img.youtube.com/vi/${movie.trailers.results[0].key}/hqdefault.jpg`
+                                    }
+                                    title = {movie.trailers.results[0].name}
+                                    backgroundLink = {`https://img.youtube.com/vi/${movie.trailers.results[0].key}/hqdefault.jpg`}
+                                    videoId = {movie.trailers.results[0].key}
+                                />
+                    )}})}
                 </CarouselTrailers>
             :
                 <CarouselTrailers
                     background = {background}
                     setTrailer = {setTrailer}
                     trailer = {trailer}
+                    header='Latest Trailers'
                 >
                     {latestTV.results.map((movie,index) => {
                         if(movie.trailers.results[0])
@@ -122,17 +122,14 @@ const Home = () => {
                         <TrailersItem 
                             key = {movie.id}
                             image= {
-                                movie.backdrop_path ? IMAGE_BASE_URL + 'w500' + movie.backdrop_path 
-                                : NoImage
+                                `https://img.youtube.com/vi/${movie.trailers.results[0].key}/hqdefault.jpg`
                             }
                             title = {movie.trailers.results[0].name}
-                            backgroundLink = {movie.backdrop_path ? IMAGE_BASE_URL + 'original' + movie.backdrop_path 
-                            : NoImage}
+                            backgroundLink = {`https://img.youtube.com/vi/${movie.trailers.results[0].key}/hqdefault.jpg`}
                             videoId = {movie.trailers.results[0].key}
                         />
                     )
                     })}
-
                 </CarouselTrailers>
             }
             {popular ?

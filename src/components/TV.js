@@ -22,7 +22,7 @@ const TV = () => {
     if (loading) return <Spinner />;
     if (error) return <div>Something went wrong...</div>;
     
-    console.log(state);
+    // console.log(state);
     return (
         <>
             <BreadCrumb movieTitle={state.name} />

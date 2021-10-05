@@ -42,7 +42,7 @@ export const useTopRatingFetchTV = () => {
         const sessionState = isPersistedState(`topRatingTVState`);
         if (sessionState && sessionState.page > 0){
             setState(sessionState);
-            console.log("GRAB FROM Top Rating TV Storage");
+            // console.log("GRAB FROM Top Rating TV Storage");
             setLoading(false);
             return;
         }

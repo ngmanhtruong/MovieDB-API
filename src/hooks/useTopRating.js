@@ -43,7 +43,7 @@ export const useTopRatingFetch = () => {
         const sessionState = isPersistedState(`topRating${type}State`);
         if (sessionState && sessionState.page > 0){
             setState(sessionState);
-            console.log("GRAB FROM toprating" + type + "storage");
+            // console.log("GRAB FROM toprating" + type + "storage");
             setLoading(false);
             return;
         }

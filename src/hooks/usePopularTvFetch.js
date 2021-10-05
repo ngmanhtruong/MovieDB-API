@@ -43,11 +43,11 @@ export const usePopularTvFetch = () => {
 
         if (sessionState && sessionState.page > 0) {
             setState(sessionState);
-            console.log("GRAB FROM POPULAR TV STORAGE");
+            // console.log("GRAB FROM POPULAR TV STORAGE");
             setLoading(false);
             return;
         }
-        console.log("GRAB FROM API");
+        // console.log("GRAB FROM API");
         fetchPopularTV(1);
     },[]);
 

@@ -14,7 +14,7 @@ const PopularTV = () => {
   const {state,loading,error} = usePopularTvFetch();
   if(error) return <div>Something went wrong...</div>;
     
-  console.log(state);
+  // console.log(state);
 
   return (
     <Wrapper>

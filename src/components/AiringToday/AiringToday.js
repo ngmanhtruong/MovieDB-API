@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 //styles
 import { Wrapper } from './AiringToday.styles';
 import { IMAGE_BASE_URL, POSTER_SIZE } from "../../config";
@@ -13,7 +13,7 @@ const AiringToday = () => {
   const {state,loading,error} = useAiringTodayFetch();
   if(error) return <div>Something went wrong...</div>;
     
-  console.log(state);
+  // console.log(state);
 
   return (
     <Wrapper>

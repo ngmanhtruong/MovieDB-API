@@ -31,7 +31,7 @@ const apiSettings = {
     return await (await fetch(endpoint)).json();
   },
   fetchMovie: async movieId => {
-    const endpoint = `${API_URL}movie/${movieId}?api_key=${API_KEY}&append_to_response=videos`;
+    const endpoint = `${API_URL}movie/${movieId}?api_key=${API_KEY}&append_to_response=videos,external_ids,images,reviews,similar`;
     return await (await fetch(endpoint)).json();
   },
   fetchMoviesWithGenres: async (page, genreforURL) =>{
@@ -56,10 +56,6 @@ const apiSettings = {
   },
   fetchLatest: async () => {
     const endpoint = `${API_URL}discover/movie?api_key=${API_KEY}&language=en-US&sort_by=release_date.desc&include_video=true&page=1`;
-    return await (await fetch(endpoint)).json();
-  },
-  fetchSimilar: async (movieId, page) => {
-    const endpoint = `${API_URL}movie/${movieId}/similar?api_key=${API_KEY}&language=en-US&page=${page}`;
     return await (await fetch(endpoint)).json();
   },
 
@@ -112,7 +108,7 @@ const apiSettings = {
     const endpoint = `${API_URL}person/${personId}?api_key=${API_KEY}&language=en-US&append_to_response=movie_credits,tv_credits,translations,external_ids`;
     return await (await fetch(endpoint)).json();
   },
-  fetchPersonIMDB : async (id) => {
+  fetchIMDB : async (id) => {
     const endpoint = `${API_URL}find/${id}?api_key=${API_KEY}&language=en-US&external_source=imdb_id`;
     return await (await fetch(endpoint)).json();
   },

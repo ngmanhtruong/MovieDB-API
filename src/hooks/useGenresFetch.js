@@ -36,11 +36,11 @@ export const useGenresFetch = ({ type }) => {
 
         if (sessionState) {
             setState(sessionState);
-            console.log("GRAB FROM GENRES STORAGE");
+            // console.log("GRAB FROM GENRES STORAGE");
             setLoading(false);
             return;
         }
-        console.log("GRAB FROM API");
+        // console.log("GRAB FROM API");
         fetchGenres(type);
     },[type]);
 

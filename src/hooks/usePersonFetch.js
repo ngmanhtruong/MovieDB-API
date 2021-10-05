@@ -17,7 +17,7 @@ export const usePersonFetch = id => {
 
             const person = await API.fetchPerson(id);
             let imdbId = person.imdb_id;
-            const imdb = await API.fetchPersonIMDB(imdbId);
+            const imdb = await API.fetchIMDB(imdbId);
             setState({
                 ...person,
                 person_results: imdb.person_results

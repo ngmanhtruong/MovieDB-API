@@ -41,7 +41,7 @@ export const Image = styled.div`
         left: 50%;
         transform: translate(-50%, -50%);
         color: var(--white);
-        transition: all ease 0.5s;
+        transition: all ease 0.3s;
         &:hover{
             cursor: pointer;
         }

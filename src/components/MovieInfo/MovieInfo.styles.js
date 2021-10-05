@@ -43,8 +43,33 @@ export const Text = styled.div`
         display: flex;
         justify-content: flex-start;
     }
+    .tagline{
+        display: flex;
+        padding: 20px 0;
+        font-style: italic;
+        p{
+            font-size: var(--fontBig);
+        }
+    }
+    .belong-to{
+        padding-bottom: 10px;
+    }
+    .social-tag{
+        padding-bottom: 20px;
+        font-size: var(--fontSuperBig);
+        a{
+            padding-right: 20px;
+        }
+    }
+    .genres{
+        p{
+            display: inline-block;
+            padding-right: 20px;
+            color: var(--silver);
+        }
+    }
     .score{
-        display: fkex;
+        display: flex;
         align-items: center;
         justify-content: center;
         width: 35px;
@@ -63,11 +88,23 @@ export const Text = styled.div`
             margin: 0;
         }
     }
+    .status{
+        margin: 0 0 0 40px;
+        
+        p{
+            margin: 0;
+        }
+    }
 
     h1{
         @media screen and (max-width: 768px){
             font-size: var(--fontBig);
         }
     }
-
+    h1.movie-title{
+        color: var(--purple);
+    }
+    @media screen and (max-width: 768px){
+        padding: 20px 20px;
+    }
 `;

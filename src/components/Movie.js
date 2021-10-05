@@ -8,6 +8,9 @@ import { IMAGE_BASE_URL, POSTER_SIZE } from '../config';
 import Spinner from './Spinner/Spinner';import BreadCrumb from './BreadCrumb/BreadCrumb';
 import MovieInfo from './MovieInfo/MovieInfo';
 import MovieInfoBar from './MovieInfoBar/MovieInfoBar';
+import CarouselItems from './CarouselItems/CarouselItems';
+import CarouselTrailers from './CarouselTrailers/CarouselTrailers';
+import TrailersItem from './TrailersItem/TrailersItem';
 
 //Hook
 import { useMovieFetch } from '../hooks/useMovieFetch';
@@ -17,6 +20,7 @@ import Actor from './Actor/Actor';
 import Carousel from './Carousel/Carousel';
 import NoPersonImage from '../images/no-image.svg';
 import MovieRec from './MovieRecommend/MovieRec';
+import NoImage from '../images/no_image.jpg';
 
 
 const Movie = () => {
@@ -26,7 +30,7 @@ const Movie = () => {
     
     if (loading) return <Spinner />;
     if (error) return <div>Something went wrong...</div>;
-    // console.log(state);
+    console.log(state);
 
     return (
         <>
@@ -39,8 +43,7 @@ const Movie = () => {
                 budget={state.budget}
                 revenue={state.revenue}
             />
-
-            {state.directors &&
+                        {state.directors &&
             <Carousel header='Directors'>
                 {state.directors.map(director => (
                     <Actor
@@ -72,6 +75,45 @@ const Movie = () => {
                             : NoPersonImage
                         }
                         personId={actor.id}
+                    />
+                ))}
+            </Carousel>
+            }
+            {state.videos && 
+            <CarouselTrailers 
+                header='Videos'
+                notHomePage = {true}
+            >
+                {state.videos.results.map(movie => (
+                    <TrailersItem 
+                        key = {movie.id}
+                        image= {
+                            `https://img.youtube.com/vi/${movie.key}/hqdefault.jpg`
+                        }
+                        title = {movie.name}
+                        backgroundLink = {`https://img.youtube.com/vi/${movie.key}/hqdefault.jpg`}
+                        videoId = {movie.key}
+                        
+                    />
+                ))}
+            </CarouselTrailers>
+            }
+            {state.similar &&
+            <Carousel header='Similar Movies'>
+                {state.similar.results.map(movie=>(
+                    <CarouselItems
+                        key={movie.id}
+                        clickable
+                        image={
+                            movie.poster_path ? IMAGE_BASE_URL + POSTER_SIZE + movie.poster_path 
+                            : NoImage
+                        }
+                        movieId={movie.id}
+                        title={movie.title}
+                        vote_average={movie.vote_average}
+                        media_type = {movie.media_type}
+                        release_date = {movie.release_date}
+                        first_air_date = {movie.first_air_date}
                     />
                 ))}
             </Carousel>

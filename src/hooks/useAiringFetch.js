@@ -43,11 +43,11 @@ export const useAiringTodayFetch = () => {
 
         if (sessionState && sessionState.page > 0) {
             setState(sessionState);
-            console.log("GRAB FROM USE AIRING STORAGE");
+            // console.log("GRAB FROM USE AIRING STORAGE");
             setLoading(false);
             return;
         }
-        console.log("GRAB FROM API");
+        // console.log("GRAB FROM API");
         fetchAiring(1);
     },[]);
 

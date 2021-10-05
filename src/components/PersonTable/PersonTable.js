@@ -5,7 +5,6 @@ import { Table, Tr } from './PersonTable.style';
 const PersonTable = ({ children }) =>{
     return(
         <>
-        {children &&
             <Tr>
                 <td>
                     <Table>
@@ -15,7 +14,6 @@ const PersonTable = ({ children }) =>{
                     </Table>
                 </td>
             </Tr>
-        }
         </>
     )
 }

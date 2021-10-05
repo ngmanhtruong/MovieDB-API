@@ -80,13 +80,13 @@ export const GlobalStyle =  createGlobalStyle`
     }
     .css-6hp17o-MuiList-root-MuiMenu-list li{
         font-size: var(--fontMed);
-        font-weight: 300;
+        font-weight: 400;
         color: var(--darkGrey);
     }
     .css-6hp17o-MuiList-root-MuiMenu-list li a{
         text-decoration: none;
         font-size: var(--fontMed);
-        font-weight: 300;
+        font-weight: 400;
         color: var(--darkGrey);
     }
     .modal-video{
