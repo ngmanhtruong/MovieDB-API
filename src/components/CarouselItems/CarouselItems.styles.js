@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
         width: 100%;
     }
     .image-wrapper{
-        width: 100%;
+        height: ${({ isCarousel }) => isCarousel ? 'auto' : '80%'};
         position: relative;
         .vote-average{
             position: absolute;

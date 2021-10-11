@@ -65,7 +65,7 @@ const TVInfo = ({ movie })=> {
                         })}
                     </div>
                     }
-                    {movie.actors &&
+                    {movie.created_by && movie.created_by.length > 0 &&
                     <div className="created-by">
                         <h3>CREATED BY</h3>
                         {movie.created_by.map(( actor, index )=>{
@@ -76,7 +76,48 @@ const TVInfo = ({ movie })=> {
                         })}
                     </div>
                     }
+                    <div className='status'>
+                        <h3>STATUS</h3>
+                        <p>{movie.status}</p>
+                    </div>
                 </div>
+                {movie.tagline &&
+                    <div className='tagline'>
+                        <p>"{movie.tagline}"</p>
+                </div>}
+                {movie.external_ids &&
+                <div className='social-tag'>
+                    {movie.external_ids.facebook_id && 
+                    <a  
+                        key='facebook_id'
+                        href={`https://www.facebook.com/${movie.external_ids.facebook_id}`}
+                        target='_blank'
+                        // ref='noreferee'
+                    >
+                        <i className="fab fa-facebook"></i>
+                    </a>
+                    }
+                    {movie.external_ids.instagram_id && 
+                    <a 
+                        key = 'instagram_id'
+                        href={`https://www.instagram.com/${movie.external_ids.instagram_id}`}
+                        target='_blank'
+                        // ref='noreferee'
+                    >
+                        <i className="fab fa-instagram"></i>
+                    </a>
+                    }
+                    {movie.external_ids.twitter_id && 
+                    <a  
+                        key= 'twitter_id'
+                        href={`https://www.twitter.com/${movie.external_ids.twitter_id}`}
+                        target='_blank'
+                        // ref='noreferee'
+                    >
+                        <i className="fab fa-twitter"></i>
+                    </a>
+                    }
+                </div>}
                 {user && 
                     <div>
                         <p>Rate This TV Show</p>

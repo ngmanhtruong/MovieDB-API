@@ -34,8 +34,10 @@ const apiSettings = {
     const endpoint = `${API_URL}movie/${movieId}?api_key=${API_KEY}&append_to_response=videos,external_ids,images,reviews,similar`;
     return await (await fetch(endpoint)).json();
   },
-  fetchMoviesWithGenres: async (page, genreforURL) =>{
-    const endpoint = `${API_URL}discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&page=${page}&with_genres=${genreforURL}`;
+  fetchMoviesWithGenres: async (type, page, genreforURL) =>{
+    const endpoint = (type === 'movie')
+    ? `${API_URL}discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&page=${page}&with_genres=${genreforURL}`
+    : `${API_URL}discover/tv?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&page=${page}&with_genres=${genreforURL}`;
     return await (await fetch(endpoint)).json();
   },
   fetchMovieRecommendations : async (movieId, page) => {
@@ -73,7 +75,7 @@ const apiSettings = {
     return await (await fetch(endpoint)).json();
   },
   fetchTV: async (id) => {
-    const endpoint = `${API_URL}tv/${id}?api_key=${API_KEY}&append_to_response=videos&language=en-US`;
+    const endpoint = `${API_URL}tv/${id}?api_key=${API_KEY}&append_to_response=credits,external_ids,reviews,similar,videos&language=en-US`;
     return await (await fetch(endpoint)).json();
   },  
   fetchTopRatedTV: async (page) => {

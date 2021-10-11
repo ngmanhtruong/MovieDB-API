@@ -1,42 +1,48 @@
 import { Chip } from "@mui/material";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useGenresFetch } from '../../hooks/useGenresFetch';
+
+//styles
+import { Wrapper } from './Genres.style';
+//helpers
+import { selectGenre } from "../../helpers";
 
 const Genres = ({
   selectedGenres,
   setSelectedGenres,
   genres,
   setGenres,
-  type,
-  setPage,
+  setGenreforURL,
+  state
 }) => {
+  
+  const handleAdd = (genre) => {
+      setSelectedGenres([...selectedGenres, genre]);
+      setGenres(genres.filter((g) => g.id !== genre.id));
+      const genresURL = selectGenre(selectedGenres);
+      setGenreforURL(genresURL);
+  };
 
-    const {state,loading,error, setState} = useGenresFetch(type);
+  const handleRemove = (genre) => {
+      setSelectedGenres(
+      selectedGenres.filter((selected) => selected.id !== genre.id)
+      );
+      setGenres([...genres, genre]);
+      const genresURL = selectGenre(selectedGenres);
+      setGenreforURL(genresURL);
+  };
 
-    
-    const handleAdd = (genre) => {
-        setSelectedGenres([...selectedGenres, genre]);
-        setState(genres.filter((g) => g.id !== genre.id));
+  //INITIAL
+  useEffect(() => {
+    setGenres(state.genres);
+    return () => {
+      setGenres([]); // unmounting
     };
-
-    const handleRemove = (genre) => {
-        setSelectedGenres(
-        selectedGenres.filter((selected) => selected.id !== genre.id)
-        );
-        setState([...genres, genre]);
-    };
-
-    useEffect(() => {
-        setGenres(state);
-        return () => {
-        setGenres({}); // unmounting
-        };
-      // eslint-disable-next-line
-    }, [setGenres]);
+  }, [setGenres, state]);
 
   return (
-    <div style={{ padding: "6px 0" }}>
-      {/* {selectedGenres && selectedGenres.map((genre) => (
+    <Wrapper>
+      {selectedGenres && selectedGenres.map((genre) => (
         <Chip
             style={{ margin: 2 }}
             label={genre.name}
@@ -46,18 +52,19 @@ const Genres = ({
             size="small"
             onDelete={() => handleRemove(genre)}
         />
-      ))} */}
-      {/* {genres && genres.map((genre) => (
+      ))}
+      {genres && genres.map((genre) => (
         <Chip
-            style={{ margin: 2 }}
+            style={{ margin: 5, padding: 5 }}
             label={genre.name}
+            color="secondary"
             key={genre.id}
             clickable
             size="small"
             onClick={() => handleAdd(genre)}
         />
-      ))} */}
-    </div>
+      ))}
+    </Wrapper>
   );
 };
 

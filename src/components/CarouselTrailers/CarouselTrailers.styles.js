@@ -68,11 +68,14 @@ export const Content = styled.div`
 `;
 
 export const H1 = styled.h1`
+    
     padding: 0px 20px;
     padding-top: 20px;
     padding-bottom: 10px;
     font-size: var(--fontSuperBig);
     font-weight: 600;
     color: var(--purple);
-    margin: 0;
+    display: block;
+    max-width: var(--maxWidth);
+    margin: 0 auto;
 `;

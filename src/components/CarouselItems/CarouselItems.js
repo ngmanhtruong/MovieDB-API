@@ -11,7 +11,7 @@ const CarouselItems = ({
     movieId, 
     release_date, 
     first_air_date,
-    isCarousel= true }) =>{
+    isCarousel=true }) =>{
 
     return(
         <Wrapper isCarousel = {isCarousel}>
@@ -33,6 +33,11 @@ const CarouselItems = ({
                     ? <span className="green" title={`IMDB ratings: ${vote_average}`}>{vote_average.toFixed(1)}</span>
                     : <span className="yellow" title={`IMDB ratings: ${vote_average}`}>{vote_average.toFixed(1)}</span>
                     }
+                </div>
+                }
+                {vote_average === 0 &&
+                <div className="vote-average">
+                    <span className="yellow" title={`IMDB ratings: Not Updated`}>0</span>
                 </div>
                 }
             </div>

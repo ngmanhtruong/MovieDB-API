@@ -26,7 +26,7 @@ const Login = () =>{
                 username,
                 password
             );
-            console.log(sessionId);
+            // console.log(sessionId);
             window.localStorage.setItem('user',JSON.stringify(sessionId));
             setUser({ sessionId: sessionId.session_id, username });
             

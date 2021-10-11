@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
     max-width: var(--maxWidth);
     width: 100%;
     margin: 0 auto;
-    padding-bottom: 50px;
+    padding: 20px 0;
 
     h1{
         margin: 0;
@@ -19,7 +19,4 @@ export const Content = styled.div`
     overflow: auto;
     margin: 0 20px;
     padding-bottom: 20px;
-    div:first-child{
-        padding-left: 15px;
-    }
 `;

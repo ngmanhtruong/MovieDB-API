@@ -30,7 +30,7 @@ const Movie = () => {
     
     if (loading) return <Spinner />;
     if (error) return <div>Something went wrong...</div>;
-    console.log(state);
+    // console.log(state);
 
     return (
         <>
@@ -79,10 +79,11 @@ const Movie = () => {
                 ))}
             </Carousel>
             }
-            {state.videos && 
+            {state.videos && state.videos.results.length > 0 &&
             <CarouselTrailers 
                 header='Videos'
                 notHomePage = {true}
+                background= {`https://img.youtube.com/vi/${state.videos.results[0].key}/hqdefault.jpg`}
             >
                 {state.videos.results.map(movie => (
                     <TrailersItem 

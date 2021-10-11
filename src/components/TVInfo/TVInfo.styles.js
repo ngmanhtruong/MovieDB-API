@@ -42,6 +42,13 @@ export const Text = styled.div`
     .rating-actors{
         display: flex;
         justify-content: flex-start;
+        .status{
+            margin: 0 0 0 40px;
+            
+            p{
+                margin: 0;
+            }
+        }
     }
     .score{
         display: fkex;
@@ -69,11 +76,31 @@ export const Text = styled.div`
             margin: 0;
         }
     }
+    .tagline{
+        display: flex;
+        padding: 20px 0;
+        font-style: italic;
+        p{
+            font-size: var(--fontBig);
+        }
+    }
+    .social-tag{
+        padding-bottom: 20px;
+        font-size: var(--fontSuperBig);
+        a{
+            padding-right: 20px;
+        }
+    }
 
     h1{
         @media screen and (max-width: 768px){
             font-size: var(--fontBig);
         }
     }
-
+    h1.movie-title{
+        color: var(--purple);
+    }
+    @media screen and (max-width: 768px){
+        padding: 20px 20px;
+    }
 `;

@@ -22,6 +22,11 @@ export const isPersistedState = stateName =>{
   return sessionState && JSON.parse(sessionState);
 }
 
+export const isLocalPersistedState = stateName => {
+  const localState = localStorage.getItem(stateName);
+  return localState && JSON.parse(localState);
+}
+
 
 function degreesToRadians(deg) {
   return (deg/180) * Math.PI;
@@ -76,3 +81,17 @@ export function drawPercentageCircle(percentage, radius, canvas){
   }
 */
 //drawPercentageCircle(percentage, radius, canvas);
+
+export const selectGenre = (selectedGenres) => {
+  if (selectedGenres.length < 1) return '';
+
+  const GenreIds = selectedGenres.map((g) => g.id);
+  return GenreIds.reduce((prev, cur) => prev + ',' + cur );
+}
+
+export const selectGenreName = (selectedGenres) => {
+  if (selectedGenres.length < 1) return '';
+
+  const GenreIds = selectedGenres.map((g) => g.name);
+  return GenreIds.reduce((prev, cur) => prev + ', ' + cur );
+}

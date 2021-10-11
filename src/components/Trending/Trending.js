@@ -29,7 +29,7 @@ const Trending = ({ time, type}) => {
 
     
     if(error) return <div>Something went wrong...</div>;
-    //console.log(state);
+    // console.log(state);
     return (
         <>
         <Wrapper>

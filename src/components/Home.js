@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-//Swipeable
 
 //Config
 import { POSTER_SIZE, BACKDROP_SIZE, IMAGE_BASE_URL } from '../config';
@@ -165,7 +164,7 @@ const Home = () => {
                     Upcoming Movies
                 </a>
             </Title>
-        }
+            }
             {popular ?
             <>
                 <Grid header={searchTerm && 'Search Result'}>
@@ -226,6 +225,7 @@ const Home = () => {
                         title={trending.name ? trending.name : trending.title}
                         release_date = {trending.release_date}
                         first_air_date = {trending.first_air_date}
+                        isCarousel={true}
                     />
                 ))}
             </Carousel>

@@ -2,7 +2,7 @@ import react from "react";
 import { Wrapper } from './Title.styles'
 const Title = ({ children }) => {
     return (
-        <Wrapper>
+        <Wrapper className='title'>
             {children}
         </Wrapper>
     )

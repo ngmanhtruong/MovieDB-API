@@ -22,7 +22,6 @@ const TVShows = () => {
 
     const random = Math.floor(Math.random() * state.results.length);
     const randomHeroImage = state.results[random];
-
     return (
         <>  
             <BreadCrumb movieTitle="TV & Shows"/>

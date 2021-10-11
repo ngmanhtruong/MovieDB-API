@@ -66,9 +66,10 @@ const MovieInfo = ({ movie })=> {
                             <p>{movie.status}</p>
                         </div>
                     </div>
+                    {movie.tagline &&
                     <div className='tagline'>
                         <p>"{movie.tagline}"</p>
-                    </div>
+                    </div>}
                     {movie.belongs_to_collection && 
                     <div className ='belong-to'>
                         <h3>BELONGS TO COLLECTION:</h3>
@@ -94,7 +95,7 @@ const MovieInfo = ({ movie })=> {
                             target='_blank'
                             // ref='noreferee'
                         >
-                            <i class="fab fa-instagram"></i>
+                            <i className="fab fa-instagram"></i>
                         </a>
                         }
                         {movie.external_ids.twitter_id && 
@@ -104,14 +105,14 @@ const MovieInfo = ({ movie })=> {
                             target='_blank'
                             // ref='noreferee'
                         >
-                            <i class="fab fa-twitter"></i>
+                            <i className="fab fa-twitter"></i>
                         </a>
                         }
                     </div>}
                     <div className='genres'>
                         <h3>GENRES</h3>
                         {movie.genres && movie.genres.map(genre=>(
-                            <p>{genre.name}</p>
+                            <p key={genre.name}>{genre.name}</p>
                         ))}
                     </div>
                     {user && 

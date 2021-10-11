@@ -113,5 +113,26 @@ export const GlobalStyle =  createGlobalStyle`
             padding-left: 0px;
         }
     }
-
+    h1.text-center{
+        padding: 0 20px;
+        padding-top: 20px;
+        color: var(--purple);
+    }
+    .something-wrong{
+        padding: 50px 20px;
+        text-align: center;
+        p{
+            font-size: var(--fontBig);
+            font-weight: 600;
+        }
+        a{
+            font-size: var(--fontBig);
+            text-decoration: none;
+            color: var(--purple);
+            transition: all ease .3s;
+            &:hover{
+                color: var(--medGrey);
+            }
+        }
+    }
 `;

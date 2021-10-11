@@ -19,6 +19,7 @@ import UserProvider from './context';
 //styles
 import { GlobalStyle } from './GlobalStyle';
 import Person from './components/Person';
+import SearchPage from './components/SearchPage';
 
 
 const App = () =>(
@@ -41,6 +42,7 @@ const App = () =>(
         <Route path='/people' children={<People />} />
         {/* <Route path='/testing' children={<Testing />} /> */}
         <Route path='/person/:id' children={<Person />} />
+        <Route path='/searchpage' children={<SearchPage />} />
 
         <Route path='/*' children={<NotFound />} />
       </Switch>

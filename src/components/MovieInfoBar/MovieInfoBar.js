@@ -7,18 +7,21 @@ import { calcTime, convertMoney } from '../../helpers';
 //Styles
 import { Wrapper, Content } from './MovieInfoBar.styles';
 
-const MovieInfoBar = ({ time, budget, revenue }) => (
+const MovieInfoBar = ({ type='movie', time=0, budget='', revenue='' }) => (
     <Wrapper>
         <Content>
             <div className="column">
-                <p>Time: {calcTime(time)}</p>
+                {type==='movie'
+                    ? <p>Time: {calcTime(time)}</p>
+                    : <p>Episode time: {calcTime(time)}</p>
+                }
             </div>
-            <div className="column">
+            {budget && <div className="column">
                 <p>Budget: {convertMoney(budget)}</p>
-            </div>
-            <div className="column">
+            </div>}
+            {revenue && <div className="column">
                 <p>Revenue: {convertMoney(revenue)}</p>
-            </div>
+            </div>}
         </Content>
     </Wrapper>
 

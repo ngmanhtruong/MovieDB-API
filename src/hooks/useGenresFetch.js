@@ -4,25 +4,34 @@ import { useState, useEffect } from "react";
 import API from '../API';
 
 //Helpers
-import { isPersistedState } from "../helpers";
+import { isLocalPersistedState } from "../helpers";
 
 const initialState = {
     genres: []
 };
 
-export const useGenresFetch = ({ type }) => {
-    const [state, setState] = useState(initialState);
+export const useGenresFetch = () => {
+    const [movieState, setMovieState] = useState(initialState);
+    const [tvState, setTVState] = useState(initialState);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
 
-    const fetchGenres = async (type="movie")=>{
+    const fetchGenres = async (type)=>{
         try{
             setError(false);
             setLoading(true);
 
-            const genres = await API.fetchGenres(type);
-
-            setState(genres);
+            const result = await API.fetchGenres(type);
+            if(type ==='movie')
+                setMovieState(prev=>({
+                    ...movieState,
+                    genres: result.genres
+                }));
+            if (type === 'tv')
+                setTVState(prev=>({
+                    ...tvState,
+                    genres: result.genres
+                }));
 
         } catch (error){
             setError(true);
@@ -32,22 +41,24 @@ export const useGenresFetch = ({ type }) => {
 
     //Initial
     useEffect(()=> {
-        const sessionState = isPersistedState('genresState');
+        const localMovieGenres = isLocalPersistedState(`movieGenresState`);
+        const localTVGenres = isLocalPersistedState(`tvGenresState`);
 
-        if (sessionState) {
-            setState(sessionState);
-            // console.log("GRAB FROM GENRES STORAGE");
+        if (localMovieGenres && localTVGenres && localMovieGenres.genres.length > 0) {
+            setMovieState(localMovieGenres);
+            setTVState(localTVGenres);
             setLoading(false);
             return;
         }
-        // console.log("GRAB FROM API");
-        fetchGenres(type);
-    },[type]);
+        fetchGenres('movie');
+        fetchGenres('tv');
+    },[]);
 
-    //Write to sessionStorage
+    //Write to localStorage
     useEffect(()=>{
-        sessionStorage.setItem('genresState',JSON.stringify(state));
-    },[state]);
+        localStorage.setItem(`movieGenresState`,JSON.stringify(movieState));
+        localStorage.setItem(`tvGenresState`,JSON.stringify(tvState));
+    },[movieState, tvState]);
 
-    return { state, loading, error, setState };
+    return { movieState, tvState, loading, error };
 }
