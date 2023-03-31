@@ -9,7 +9,6 @@ import { POSTER_SIZE } from "../../config";
 const HeaderSearchbar = ({ setSearchTerm, children, setSearch }) =>{
     const [state, setState] = useState();
     const initial = useRef(true);
-    const [click, setClick] = useState(false);
 
     useEffect(()=>{
         if (initial.current){
@@ -26,14 +25,6 @@ const HeaderSearchbar = ({ setSearchTerm, children, setSearch }) =>{
         }
     },[setSearchTerm, state])
 
-    const handleClick = (e) => {
-        e.preventDefault();
-        if(click){
-            setClick(false);
-        } else {
-            setClick(true);
-        }
-    }
     const handleClose = (e) => {
         e.preventDefault();
         setSearch(false);
@@ -45,7 +36,6 @@ const HeaderSearchbar = ({ setSearchTerm, children, setSearch }) =>{
                 placeholder="Search Movies, TVShows, People..." 
                 value={state} 
                 onChange={e => setState(e.currentTarget.value)}
-                onClick ={(e)=> handleClick(e)}
             />
             <button onClick = {e => handleClose(e)}>
                 <img src={closeIcon} alt='close-icon' />
